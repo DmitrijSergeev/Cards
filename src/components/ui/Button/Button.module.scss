@@ -1,0 +1,142 @@
+.button {
+  all: unset;
+
+  cursor: pointer;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 36px;
+  padding: 6px 28px;
+
+  /* Subtitle 2 */
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 24px; /* 171.429% */
+  color: var(--color-light-100);
+  text-align: center;
+
+  background: var(--color-accent-500);
+  border-radius: 4px;
+  box-shadow: 0 4px 18px 0 rgb(140 97 255 / 35%);
+
+  &.withIcon {
+    width: 176px;
+  }
+
+}
+
+.primary {
+  background: var(--color-accent-500);
+  box-shadow: 0 4px 18px 0 rgb(140 97 255 / 35%);
+
+  &:focus {
+    background: var(--color-accent-500);
+    border: 2px solid var(--color-info-700);
+    box-shadow: 0 4px 18px 0 rgb(140 97 255 / 35%);
+  }
+
+  &:hover {
+    background: var(--color-accent-300);
+  }
+
+  &:active {
+    background-color: var(--color-accent-700);
+  }
+
+  &:disabled {
+    color: var(--color-light-900);
+    background-color: var(--color-accent-900);
+  }
+}
+
+
+.secondary {
+  width: 169px;
+  background-color: var(--color-dark-300);
+  box-shadow: 0 4px 4px 0 rgb(77 86 96 / 13%);
+
+  &:focus {
+    background-color: var(--color-dark-300);
+    border: 2px solid var(--color-info-700);
+  }
+
+  &:hover {
+    background: var(--color-dark-100);
+  }
+
+  &:active {
+    background-color: var(--color-dark-500);
+  }
+
+  &:disabled {
+    color: var(--color-light-900);
+    background-color: var(--color-dark-300);
+  }
+}
+
+
+.tertiary {
+  width: 106px;
+
+  color: var(--color-accent-500);
+
+  background: transparent;
+  border: 1px solid var(--color-accent-500);
+  border-radius: 4px;
+
+  &:focus {
+    border: 2px solid var(--color-accent-500);
+  }
+
+  &:hover {
+    background: var(--color-dark-500);
+  }
+
+  &:active {
+    background-color: var(--color-accent-900);
+    border: 1px solid var(--color-accent-700);
+  }
+
+  &:disabled {
+    color: var(--color-accent-900);
+    border: 1px solid var(--color-accent-900);
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+.link {
+  color: var(--color-accent-500);
+  background: none;
+  border: none;
+  box-shadow: none;
+
+  &:focus {
+    border: 2px solid var(--color-info-700);
+    border-radius: 130px;
+  }
+
+  &:hover {
+    color: var(--color-accent-300);
+  }
+
+  &:active {
+    color: var(--color-accent-700);
+  }
+
+  &:disabled {
+    color: var(--color-accent-900);
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
