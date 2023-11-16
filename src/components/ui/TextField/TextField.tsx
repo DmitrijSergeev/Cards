@@ -1,5 +1,7 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react'
 
+import { Typography } from '@/components/ui/Typography'
+
 import s from './TextField.module.scss'
 
 type DefaultInputPropsType = DetailedHTMLProps<
@@ -11,12 +13,24 @@ type TextFieldType = Omit<DefaultInputPropsType, 'type'> & {
   error?: ReactNode
   id: string
   label?: string
+  labelPosition?: 'end' | 'start'
   onChangeText?: (value: string) => void
   onEnter?: () => void
+  placeholder?: string
 }
 
 export const TextField = (props: TextFieldType) => {
-  const { id, label, onChange, onChangeText, onEnter, onKeyDown, ...respProps } = props
+  const {
+    id,
+    label,
+    labelPosition = 'start',
+    onChange,
+    onChangeText,
+    onEnter,
+    onKeyDown,
+    placeholder,
+    ...respProps
+  } = props
 
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e)
@@ -28,10 +42,29 @@ export const TextField = (props: TextFieldType) => {
     onEnter && e.key === 'Enter' && onEnter()
   }
 
+  const textFieldWrapper = s.textFieldWrapper
+  const textFieldStyle = s.textFieldLabel
+  const labelStylePosition = `${s.labelText} ${s[labelPosition]}`
+  const textField = `${s.textField}`
+
   return (
-    <div className={s.inputWrapper}>
-      <label className={s.labelText}>{label}</label>
-      <input id={id} onChange={onChangeCallback} onKeyDown={onKeyPressCallback} {...respProps} />
+    <div className={textFieldWrapper}>
+      <div className={textFieldStyle}>
+        {' '}
+        {label && (
+          <Typography as={'label'} className={labelStylePosition}>
+            {label}
+          </Typography>
+        )}
+        <input
+          id={id}
+          onChange={onChangeCallback}
+          onKeyDown={onKeyPressCallback}
+          placeholder={placeholder}
+          {...respProps}
+          className={textField}
+        />
+      </div>
     </div>
   )
 }
