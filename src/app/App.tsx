@@ -6,7 +6,6 @@ export function App() {
   const [text, setText] = useState('')
 
   const handleChangeText = (value: string) => {
-    console.log(value)
     setText(value)
   }
 

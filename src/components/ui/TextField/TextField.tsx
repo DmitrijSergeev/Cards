@@ -1,26 +1,22 @@
-import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react'
+import React, { ChangeEvent, ComponentProps, forwardRef } from 'react'
 
 import { Typography } from '@/components/ui/Typography'
 
 import s from './TextField.module.scss'
 
-type DefaultInputPropsType = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->
-
-type TextFieldType = Omit<DefaultInputPropsType, 'type'> & {
-  error?: ReactNode
+type TextFieldType = {
+  errorText?: string
   id: string
   label?: string
   labelPosition?: 'end' | 'start'
   onChangeText?: (value: string) => void
   onEnter?: () => void
   placeholder?: string
-}
+} & ComponentProps<'input'>
 
-export const TextField = (props: TextFieldType) => {
+export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref) => {
   const {
+    errorText,
     id,
     label,
     labelPosition = 'start',
@@ -42,17 +38,20 @@ export const TextField = (props: TextFieldType) => {
     onEnter && e.key === 'Enter' && onEnter()
   }
 
-  const textFieldWrapper = s.textFieldWrapper
-  const textFieldStyle = s.textFieldLabel
-  const labelStylePosition = `${s.labelText} ${s[labelPosition]}`
-  const textField = `${s.textField}`
+  const classNames = {
+    errorSpan: s.errorSpan,
+    labelStylePosition: `${s.labelText} ${s[labelPosition]}`,
+    textField: `${s.textField} ${errorText ? s.errorText : ''}`,
+    textFieldRoot: s.root,
+    textFieldWrapper: s.textFieldWrapper,
+  }
 
   return (
-    <div className={textFieldWrapper}>
-      <div className={textFieldStyle}>
+    <div className={classNames.textFieldRoot}>
+      <div className={classNames.textFieldWrapper}>
         {' '}
         {label && (
-          <Typography as={'label'} className={labelStylePosition}>
+          <Typography as={'label'} className={classNames.labelStylePosition}>
             {label}
           </Typography>
         )}
@@ -61,10 +60,17 @@ export const TextField = (props: TextFieldType) => {
           onChange={onChangeCallback}
           onKeyDown={onKeyPressCallback}
           placeholder={placeholder}
+          ref={ref}
           {...respProps}
-          className={textField}
+          className={classNames.textField}
+          type={'text'}
         />
+        {errorText && (
+          <Typography as={'span'} className={classNames.errorSpan}>
+            {errorText}
+          </Typography>
+        )}
       </div>
     </div>
   )
-}
+})
