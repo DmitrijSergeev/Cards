@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { CheckboxTrue } from '@/components/ui/IconsComponents/checkboxIcons/CheckboxTrue'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
 
@@ -23,62 +24,19 @@ export const Checkbox: FC<CheckboxProps> = props => {
   }*/
 
   return (
-    <form className={s.form}>
+    <div className={s.form}>
       <label className={s.label}>{label}</label>
-      <div className={s.upBox}>
-        <CheckboxRadix.Root
-          className={checkboxClasses.join('')}
-          disabled={disabled}
-          onCheckedChange={onChange}
-        >
-          {checked && (
-            <CheckboxRadix.Indicator className={s.indicator} forceMount>
-              <CheckIcon className={checked ? s.checked : ''} />
-            </CheckboxRadix.Indicator>
-          )}
-        </CheckboxRadix.Root>
-        <CheckboxRadix.Root
-          className={checkboxClasses.join(' ')}
-          disabled={disabled}
-          onCheckedChange={onChange}
-        >
-          {checked && (
-            <CheckboxRadix.Indicator
-              asChild={false}
-              className={checked ? s.indicator : s.checkbox}
-              forceMount
-            ></CheckboxRadix.Indicator>
-          )}
-        </CheckboxRadix.Root>
-      </div>
-      <div className={s.bottomBox}>
-        <CheckboxRadix.Root
-          className={checkboxClasses.join(' ')}
-          disabled={disabled}
-          onCheckedChange={onChange}
-        >
-          {checked && (
-            <CheckboxRadix.Indicator asChild={false} className={s.indicator} forceMount>
-              <CheckIcon className={checked ? s.checked : ''} />
-            </CheckboxRadix.Indicator>
-          )}
-        </CheckboxRadix.Root>
-        <span className={s.name}>{name}</span>
-        <CheckboxRadix.Root
-          className={checkboxClasses.join(' ')}
-          disabled={disabled}
-          onCheckedChange={onChange}
-        >
-          {checked && (
-            <CheckboxRadix.Indicator
-              asChild={false}
-              className={checked ? s.indicator : s.checkbox}
-              forceMount
-            ></CheckboxRadix.Indicator>
-          )}
-        </CheckboxRadix.Root>
-        <span className={s.name}>{name}</span>
-      </div>
-    </form>
+      <CheckboxRadix.Root
+        checked={checked}
+        className={checkboxClasses.join('')}
+        disabled={disabled}
+        onCheckedChange={onChange}
+      >
+        <CheckboxRadix.Indicator className={s.indicator}>
+          {/*<CheckboxTrue className={checked ? s.checked : ''} />*/}
+          <CheckIcon />
+        </CheckboxRadix.Indicator>
+      </CheckboxRadix.Root>
+    </div>
   )
 }
