@@ -1,0 +1,67 @@
+.form {
+  position: relative;
+  display: flex;
+}
+
+.upBox {
+  position: absolute;
+  display: flex;
+  margin-top: 50px;
+}
+
+.bottomBox {
+  position: absolute;
+  display: flex;
+  margin-top: 150px;
+}
+
+/* .checkbox {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+  padding: 10px;
+
+} */
+
+.indicator {
+  width: 18px;
+  height: 18px;
+}
+
+.label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &.disabled {
+    color: var(--color-checkbox-disabled);
+  }
+}
+
+.checked {
+  color: black;
+}
+
+.name {
+  margin-right: 30px;
+  padding: 5px;
+}
+
+.default {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+  padding: 10px;
+}
