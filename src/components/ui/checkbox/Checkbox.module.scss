@@ -1,19 +1,4 @@
-.form {
-  position: relative;
-  display: flex;
-}
 
-.upBox {
-  position: absolute;
-  display: flex;
-  margin-top: 50px;
-}
-
-.bottomBox {
-  position: absolute;
-  display: flex;
-  margin-top: 150px;
-}
 
 /* .checkbox {
   cursor: pointer;
@@ -28,20 +13,19 @@
   padding: 10px;
 
 } */
+.labelDisabled{
+  color: var(--color-dark-100);
+}
+
+.root{
+  s.wrapper{
+
+  }
+}
 
 .indicator {
   width: 18px;
   height: 18px;
-}
-
-.label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-
-  &.disabled {
-    color: var(--color-checkbox-disabled);
-  }
 }
 
 .checked {

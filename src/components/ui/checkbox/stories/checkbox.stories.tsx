@@ -1,29 +1,48 @@
+import { useState } from 'react'
+
 import { Checkbox } from '@/components/ui/checkbox/Checkbox'
+import { CheckboxProps } from '@radix-ui/react-checkbox'
 import { Meta, StoryObj } from '@storybook/react'
 
 import './Checkbox.stories.scss'
 
 const meta = {
   argTypes: {
-    variant: {
-      options: ['default', 'active', 'focus', 'hover', 'disabled'],
+    disabled: {
+      control: { type: 'radio' },
+      options: [true, false],
     },
   },
   component: Checkbox,
   tags: ['autodocs'],
-  title: 'сomponents/Checkbox',
+  title: 'Components/Checkbox',
 } satisfies Meta<typeof Checkbox>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const ControledChecbox = {
+  args: {
+    label: 'Click here',
+  },
+  render: (_args: JSX.IntrinsicAttributes & CheckboxProps) => {
+    const [checked, setChecked] = useState(true)
+
+    return <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
+  },
+}
+
 export const Default: Story = {
   args: {
     checked: true,
     disabled: false,
+  },
+}
+
+export const DefaultWithLabel: Story = {
+  args: {
+    disabled: false,
     label: 'Default',
-    name: 'checkbox',
-    variant: 'default',
   },
 }
 
@@ -32,8 +51,6 @@ export const Active: Story = {
     checked: true,
     disabled: false,
     label: 'Active',
-    name: 'checkbox',
-    variant: 'active',
   },
 }
 export const Focus: Story = {
@@ -41,8 +58,6 @@ export const Focus: Story = {
     checked: true,
     disabled: false,
     label: 'Focus',
-    name: 'checkbox',
-    variant: 'focus',
   },
 }
 export const Hover: Story = {
@@ -50,8 +65,6 @@ export const Hover: Story = {
     checked: true,
     disabled: false,
     label: 'Hover',
-    name: 'checkbox',
-    variant: 'hover',
   },
 }
 
@@ -60,7 +73,5 @@ export const Disabled: Story = {
     checked: true,
     disabled: true,
     label: 'Disabled',
-    name: 'checkbox',
-    variant: 'disabled',
   },
 }

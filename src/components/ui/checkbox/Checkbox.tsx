@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 import { CheckboxTrue } from '@/components/ui/IconsComponents/checkboxIcons/CheckboxTrue'
+import { Typography } from '@/components/ui/Typography'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
-import { CheckIcon } from '@radix-ui/react-icons'
 
 import s from './Checkbox.module.scss'
 
@@ -10,33 +10,33 @@ export type CheckboxProps = {
   checked?: boolean
   disabled?: boolean
   label?: string
-  name?: string
-  onChange?: () => void
-  variant?: 'active' | 'default' | 'disabled' | 'focus' | 'hover'
+  onChange?: (checked: boolean) => void
 }
 export const Checkbox: FC<CheckboxProps> = props => {
-  const { checked, disabled, label, name, onChange, variant = 'default' } = props
+  const { checked, disabled, label, onChange } = props
 
-  const checkboxClasses = [s[variant]]
-
-  /*if (box) {
-    checkboxClasses.push(`${s.withIcon}`)
-  }*/
+  const className = {
+    label: s.labelDisabled,
+    root: s.root,
+    wrapper: s.wrapper,
+  }
 
   return (
-    <div className={s.form}>
-      <label className={s.label}>{label}</label>
-      <CheckboxRadix.Root
-        checked={checked}
-        className={checkboxClasses.join('')}
-        disabled={disabled}
-        onCheckedChange={onChange}
-      >
-        <CheckboxRadix.Indicator className={s.indicator}>
-          {/*<CheckboxTrue className={checked ? s.checked : ''} />*/}
-          <CheckIcon />
-        </CheckboxRadix.Indicator>
-      </CheckboxRadix.Root>
+    <div className={className.root}>
+      <div className={className.wrapper}>
+        {label && (
+          <Typography as={'label'} className={className.label}>
+            {label}
+          </Typography>
+        )}
+        <CheckboxRadix.Root checked={checked} disabled={disabled} onCheckedChange={onChange}>
+          {checked && (
+            <CheckboxRadix.Indicator className={s.indicator}>
+              <CheckboxTrue />
+            </CheckboxRadix.Indicator>
+          )}
+        </CheckboxRadix.Root>
+      </div>
     </div>
   )
 }
