@@ -1,0 +1,117 @@
+
+.root {
+  .textFieldWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    /** label  */
+    .labelText {
+      display: flex;
+      margin-bottom: 5px;
+      color: var(--color-dark-100);
+    }
+
+    .start {
+      justify-content: flex-start
+    }
+
+    .end {
+      justify-content: flex-end;
+    }
+
+    .iconStart{
+      pointer-events: none;
+
+      position: absolute;
+      top: 70%;
+      left: 12px;
+      transform: translateY(-50%);
+
+      display: grid;
+      place-items: center;
+
+      width: 20px;
+      height: 20px;
+
+      &.textField::placeholder {
+        padding-left: 30px;
+      }
+    }
+
+    /** textField */
+    .textField {
+      flex-shrink: 0;
+
+      width: 284px;
+      height: 36px;
+      padding: 6px 12px;
+
+      color: var(--color-dark-100);
+
+      background-color: var(--color-dark-900);
+      border: 1px solid var(--color-dark-300);
+      border-radius: 2px;
+
+      &::placeholder {
+        color: var(--color-dark-100);
+      }
+
+      &.placeholderWithIcon {
+        padding-left: 35px;
+      }
+
+      &:disabled {
+        color: var(--color-dark-300);
+        background-color: var(--color-dark-900);
+        border: 1px solid var(--color-dark-300);
+      }
+
+      &:focus-visible {
+        color: var(--color-light-100);
+        border: 1px solid var(--color-light-100);
+      }
+
+      &:focus-within:not(.errorText) {
+        border: 1px solid blue;
+      }
+
+      &:hover:not(&:disabled, .errorText) {
+        background-color: var(--color-dark-700);
+        border: 1px solid var(--color-dark-100);
+      }
+    }
+
+
+
+    .errorText {
+      color: var(--color-danger-300);
+      border: 1px solid var(--color-danger-300);
+
+      &.errorText::placeholder {
+        color: var(--color-danger-300);
+      }
+    }
+
+    .errorText:focus-visible {
+      color: var(--color-danger-300);
+      border: 1px solid var(--color-danger-300);
+      outline: 1px solid var(--color-danger-300);
+    }
+
+    .errorSpan {
+      position: absolute;
+      bottom: -21px;
+
+      font-family: Roboto, serif;
+      font-size: 12px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 24px; /* 200% */
+      color: var(--color-danger-300);
+    }
+
+  }
+
+
+}
