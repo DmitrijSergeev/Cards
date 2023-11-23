@@ -1,7 +1,4 @@
-import { useState } from 'react'
-
 import { Checkbox } from '@/components/ui/checkbox/Checkbox'
-import { CheckboxProps } from '@radix-ui/react-checkbox'
 import { Meta, StoryObj } from '@storybook/react'
 
 import './Checkbox.stories.scss'
@@ -15,7 +12,7 @@ const meta = {
   },
   component: Checkbox,
   tags: ['autodocs'],
-  title: 'Components/Checkbox',
+  title: 'Components/checkbox',
 } satisfies Meta<typeof Checkbox>
 
 export default meta
@@ -24,11 +21,6 @@ type Story = StoryObj<typeof meta>
 export const ControledChecbox = {
   args: {
     label: 'Click here',
-  },
-  render: (_args: JSX.IntrinsicAttributes & CheckboxProps) => {
-    const [checked, setChecked] = useState(true)
-
-    return <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
   },
 }
 

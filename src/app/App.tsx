@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
 import { Typography } from '@/components/ui/Typography'
-import { Checkbox } from '@/components/ui/checkbox'
 
 import s from './App.module.scss'
+
+import { Checkbox } from '../components/ui/checkbox'
 export function App() {
   const [checked, setCheked] = useState(false)
 

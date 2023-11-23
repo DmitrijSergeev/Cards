@@ -9,8 +9,7 @@
     "format": "prettier --write src",
     "lint": "eslint . --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
@@ -35,6 +34,7 @@
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
     "@storybook/addon-links": "7.5.3",
+    "@storybook/addon-mdx-gfm": "7.5.3",
     "@storybook/addon-onboarding": "1.0.8",
     "@storybook/blocks": "7.5.3",
     "@storybook/react": "7.5.3",
