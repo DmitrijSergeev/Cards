@@ -1,69 +1,72 @@
-import { Checkbox } from '@/components/ui/checkbox/Checkbox'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
-import './Checkbox.stories.scss'
+import { useState } from 'react'
 
-const meta = {
+import { Checkbox, CheckboxProps } from '@/components/ui/checkbox'
+
+const meta: Meta<typeof Checkbox> = {
   argTypes: {
-    disabled: {
-      control: { type: 'radio' },
-      options: [true, false],
+    position: {
+      options: ['default', 'left'],
     },
   },
   component: Checkbox,
   tags: ['autodocs'],
-  title: 'Components/checkbox',
-} satisfies Meta<typeof Checkbox>
+  title: 'Components/Checkbox',
+}
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const ControledChecbox = {
-  args: {
-    label: 'Click here',
-  },
+const CheckboxWithHooks = (args: CheckboxProps) => {
+  const [checked, setChecked] = useState(false)
+  const onCheckedChange = () => {
+    setChecked(!checked)
+  }
+
+  return <Checkbox {...args} checked={checked} onCheckedChange={onCheckedChange} />
 }
 
 export const Default: Story = {
   args: {
-    checked: true,
+    checked: false,
     disabled: false,
-  },
-}
-
-export const DefaultWithLabel: Story = {
-  args: {
-    disabled: false,
-    label: 'Default',
-  },
-}
-
-export const Active: Story = {
-  args: {
-    checked: true,
-    disabled: false,
-    label: 'Active',
-  },
-}
-export const Focus: Story = {
-  args: {
-    checked: true,
-    disabled: false,
-    label: 'Focus',
-  },
-}
-export const Hover: Story = {
-  args: {
-    checked: true,
-    disabled: false,
-    label: 'Hover',
+    position: 'default',
   },
 }
 
 export const Disabled: Story = {
   args: {
-    checked: true,
+    checked: false,
     disabled: true,
-    label: 'Disabled',
+    position: 'default',
   },
+}
+
+export const DefaultWithLabel: Story = {
+  args: {
+    checked: false,
+    disabled: false,
+    label: 'Click here',
+    position: 'default',
+  },
+}
+
+export const Controlled: Story = {
+  args: {
+    checked: false,
+    disabled: false,
+    position: 'default',
+  },
+  render: (args: CheckboxProps) => <CheckboxWithHooks {...args} />,
+}
+
+export const ControlledWithLabel: Story = {
+  args: {
+    checked: false,
+    disabled: false,
+    label: 'Click here',
+    position: 'default',
+  },
+  render: (args: CheckboxProps) => <CheckboxWithHooks {...args} />,
 }

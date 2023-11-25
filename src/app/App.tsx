@@ -1,10 +1,6 @@
 import { useState } from 'react'
 
-import { Typography } from '@/components/ui/Typography'
-
-import s from './App.module.scss'
-
-import { Checkbox } from '../components/ui/checkbox'
+import { Checkbox } from '@/components/ui/checkbox'
 export function App() {
   const [checked, setCheked] = useState(false)
 
@@ -16,9 +12,6 @@ export function App() {
     <>
       <div>Hello world!</div>
       <Checkbox checked={checked} label={'Это наш лейбл'} onChange={onchangeHandler} />
-      <Typography as={'label'} className={s.labelName}>
-        Это типография
-      </Typography>
     </>
   )
 }
