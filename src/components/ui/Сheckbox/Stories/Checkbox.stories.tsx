@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { Checkbox, CheckboxProps } from '@/components/ui/checkbox'
+import { Checkbox, CheckboxProps } from '@/components/ui/Сheckbox'
 
 const meta: Meta<typeof Checkbox> = {
   argTypes: {

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactElement, forwardRef } from 'react'
 
 import { CheckIcon } from '@/components/ui/IconsComponents/checkboxIcons/CheckIcon'
 import { Typography } from '@/components/ui/Typography'
@@ -30,7 +30,7 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
       ...restProps
     },
     ref
-  ): JSX.Element => {
+  ): ReactElement => {
     const classNames = {
       checkboxWrapper: clsx(s.checkboxWrapper, disabled && s.disabled, s[position]),
       indicator: s.indicator,
