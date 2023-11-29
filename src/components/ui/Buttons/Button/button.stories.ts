@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { iconsExport } from '@/common/icons/iconsExport'
 
-import { Button } from './'
+import { Button } from './index'
 
 const meta = {
   argTypes: {
