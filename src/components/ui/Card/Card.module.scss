@@ -1,10 +1,10 @@
-.card{
+.card {
   flex-shrink: 0;
 
   width: 420px;
   height: 552px;
 
-  background-color:#313131 ;
+  background-color: #313131;
   filter: drop-shadow(-1px -1px 2px rgb(0 0 0 / 10%)) drop-shadow(1px 1px 2px rgb(0 0 0 / 10%));
 
   fill: var(--color-dark-700);
@@ -12,8 +12,7 @@
   stroke-width: 1px;
 }
 
-
-.cardStory{
+.cardStory {
   display: flex;
   align-items: center;
   justify-content: center;
