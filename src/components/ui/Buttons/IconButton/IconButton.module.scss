@@ -33,10 +33,11 @@
   &:active {
     color: var(--color-light-100);
 
-    .backgroundEffect {
-      background-color: rgb(183 183 183 / 6%);
-      border-radius: 50%;
-    }
+    //.backgroundEffect {
+    //  background-color: rgb(68 0 0);
+    //  border-radius: 50%;
+    //  animation: rippleAnimation 0.6s ease-in-out; /* добавляем анимацию */
+    //}
   }
 
   &:focus:not(:disabled) {
@@ -55,8 +56,9 @@
     }
 
     &.notBackgroundEffect {
-      border: 0.1rem solid var(--color-dark-100);
-      border-radius: 0.4rem;
+      background-color: var(--color-dark-900);
+      border: 0.05rem solid var(--color-light-500);
+      border-radius: 1rem;
     }
 
     &.backgroundEffect::before {
@@ -84,107 +86,106 @@
       border-radius: 50%;
     }
   }
-}
 
-.primary {
-  color: var(--color-accent-500);
-
-  &:focus {
+  &.primary {
     color: var(--color-accent-500);
-  }
 
-  &:disabled {
-    color: var(--color-accent-900);
-  }
-
-  &:active {
-    color: var(--color-accent-700);
-
-    &.backgroundEffect {
-      background-color: rgb(183 183 183 / 6%);
-      border-radius: 50%;
-    }
-  }
-
-  &:hover {
-    color: var(--color-accent-300);
-  }
-}
-
-.secondary {
-  color: var(--color-dark-300);
-
-  &:focus {
-    color: var(--color-dark-300);
-  }
-
-  &:disabled {
-    color: var(--color-dark-300);
-  }
-
-  &:active:not(:disabled) {
-    color: var(--color-dark-500);
-
-    &.backgroundEffect {
-      background-color: rgb(183 183 183 / 6%);
-      border-radius: 50%;
-    }
-  }
-
-  &:hover:not(:disabled) {
-    color: var(--color-dark-100);
-  }
-}
-
-.inputColor {
-  color: var(--color-dark-100);
-
-  &:focus {
-    color: var(--color-light-100);
-
-    &.notBackgroundEffect {
-      border: none;
-      border-radius: 0.4rem;
-      outline: none;
+    &:focus:not(:disabled) {
+      color: var(--color-accent-500);
     }
 
-    &.backgroundEffect::before {
-      content: '';
+    &:disabled {
+      color: var(--color-accent-900);
+    }
 
-      position: absolute;
-      inset: 0;
+    &:active:not(:disabled) {
+      color: var(--color-accent-700);
 
-      background-color: rgb(128 128 128 / 0%);
-      border-radius: 50%;
-
-      animation: pulsate 1s infinite alternate;
-
-      @keyframes pulsate {
-        0% {
-          transform: scale(0);
-        }
-
-        100% {
-          transform: scale(0);
-        }
+      &.backgroundEffect {
+        background-color: rgb(183 183 183 / 6%);
+        border-radius: 50%;
       }
     }
-  }
 
-  &:disabled {
-    color: var(--color-dark-600);
-  }
-
-  &:active {
-    color: var(--color-light-100);
-
-    &.backgroundEffect {
-      background-color: rgb(0 0 0 / 0%);
-      border-radius: 50%;
+    &:hover:not(:disabled, :active) {
+      color: var(--color-accent-300);
     }
   }
 
-  &:hover {
+  &.secondary {
+    color: var(--color-dark-300);
+
+    &:focus:not(:disabled) {
+      color: var(--color-dark-300);
+    }
+
+    &:disabled {
+      color: var(--color-dark-300);
+    }
+
+    &:active:not(:disabled) {
+      color: var(--color-dark-500);
+
+      &.backgroundEffect {
+        background-color: rgb(183 183 183 / 6%);
+        border-radius: 50%;
+      }
+    }
+
+    &:hover:not(:disabled, :active) {
+      color: var(--color-dark-100);
+    }
+  }
+
+  &.inputColor {
     color: var(--color-dark-100);
+
+    &:focus:not(:disabled) {
+      color: var(--color-light-100);
+
+      &.notBackgroundEffect {
+        background-color: rgb(128 128 128 / 0%);
+        border: 1px solid blue;
+        border-radius: 1rem;
+        outline: none;
+      }
+
+      //&.backgroundEffect::before {
+      //  position: absolute;
+      //  inset: 0;
+      //
+      //  background-color: rgb(128 128 128 / 0%);
+      //  border-radius: 50%;
+      //
+      //  animation: pulsate 1s infinite alternate;
+      //
+      //  @keyframes pulsate {
+      //    0% {
+      //      transform: scale(0);
+      //    }
+      //
+      //    100% {
+      //      transform: scale(0);
+      //    }
+      //  }
+      //}
+    }
+
+    &:disabled {
+      color: var(--color-dark-600);
+    }
+
+    &:active:not(:disabled) {
+      color: var(--color-light-100);
+
+      &.backgroundEffect {
+        background-color: rgb(0 0 0 / 0%);
+        border-radius: 50%;
+      }
+    }
+
+    &:hover:not(:disabled, :active) {
+      color: var(--color-dark-50);
+    }
   }
 }
