@@ -31,24 +31,15 @@
   }
 
   &:active {
-    color: var(--color-light-500);
+    color: var(--color-light-100);
 
-    &.backgroundEffect {
+    .backgroundEffect {
       background-color: rgb(183 183 183 / 6%);
       border-radius: 50%;
     }
   }
 
-  &:hover:not(:hover) {
-    color: var(--color-light-900);
-
-    &.backgroundEffect {
-      background-color: rgb(183 183 183 / 14%);
-      border-radius: 50%;
-    }
-  }
-
-  &:focus {
+  &:focus:not(:disabled) {
     outline: none;
 
     &::before {
@@ -60,7 +51,7 @@
       background-color: rgb(128 128 128 / 14%);
       border-radius: inherit;
 
-      animation: pulseAnimation 1.5s infinite; // Добавить анимацию для свойства background
+      animation: pulseAnimation 1.5s infinite;
     }
 
     &.notBackgroundEffect {
@@ -84,6 +75,15 @@
       }
     }
   }
+
+  &:hover:not(:disabled, :active) {
+    color: var(--color-light-900);
+
+    &.backgroundEffect {
+      background-color: rgb(183 183 183 / 14%);
+      border-radius: 50%;
+    }
+  }
 }
 
 .primary {
@@ -93,8 +93,8 @@
     color: var(--color-accent-500);
   }
 
-  &:hover {
-    color: var(--color-accent-300);
+  &:disabled {
+    color: var(--color-accent-900);
   }
 
   &:active {
@@ -106,19 +106,19 @@
     }
   }
 
-  &:disabled {
-    color: var(--color-accent-900);
+  &:hover {
+    color: var(--color-accent-300);
   }
 }
 
 .secondary {
   color: var(--color-dark-300);
 
-  &:disabled {
+  &:focus {
     color: var(--color-dark-300);
   }
 
-  &:focus {
+  &:disabled {
     color: var(--color-dark-300);
   }
 
@@ -171,8 +171,8 @@
     }
   }
 
-  &:hover {
-    color: var(--color-dark-100);
+  &:disabled {
+    color: var(--color-dark-600);
   }
 
   &:active {
@@ -184,7 +184,7 @@
     }
   }
 
-  &:disabled {
-    color: var(--color-dark-600);
+  &:hover {
+    color: var(--color-dark-100);
   }
 }
