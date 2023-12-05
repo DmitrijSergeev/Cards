@@ -57,7 +57,7 @@
 
     &.notBackgroundEffect {
       background-color: var(--color-dark-900);
-      border: 0.05rem solid var(--color-light-500);
+      border: 0.09rem solid var(--color-light-500);
       border-radius: 1rem;
     }
 
@@ -145,7 +145,6 @@
 
       &.notBackgroundEffect {
         background-color: rgb(128 128 128 / 0%);
-        border: 1px solid blue;
         border-radius: 1rem;
         outline: none;
       }
