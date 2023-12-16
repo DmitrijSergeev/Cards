@@ -70,15 +70,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
   return (
     <div className={classNames.textFieldRoot}>
       <div className={classNames.textFieldWrapper}>
-        {' '}
         {label && (
-          <Typography as={'label'} className={classNames.labelStylePosition}>
-            {label}
+          <Typography asChild className={classNames.labelStylePosition}>
+            <label>{label}</label>
           </Typography>
         )}
         {iconStart && (
-          <Typography as={'span'} className={classNames.iconStart}>
-            {iconStart}
+          <Typography asChild className={classNames.iconStart}>
+            <span>{iconStart}</span>
           </Typography>
         )}
         <input
@@ -93,8 +92,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
           type={'text'}
         />
         {errorText && (
-          <Typography as={'span'} className={classNames.errorSpan}>
-            {errorText}
+          <Typography asChild className={classNames.errorSpan}>
+            <span>{errorText}</span>
           </Typography>
         )}
       </div>

@@ -131,3 +131,15 @@ export const Link2: Story = {
     variant: 'Link2',
   },
 }
+
+export const Link2AsChild: Story = {
+  args: {
+    asChild: true,
+    children: (
+      <article>
+        Carosserie Test Zürich\n' + 'Stauffacherstrasse 31\n' + '8004 Zürich, ZH, CH',
+      </article>
+    ),
+    variant: 'Link2',
+  },
+}
