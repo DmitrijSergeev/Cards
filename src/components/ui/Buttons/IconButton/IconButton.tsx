@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, ElementType, Ref, forwardRef } from 'react'
+import React, { ComponentPropsWithoutRef, ElementRef, ElementType, Ref, forwardRef } from 'react'
 
 import { IconProps } from '@/common/icons/IconWrapper'
 import { clsx } from 'clsx'
@@ -16,10 +16,7 @@ type ButtonProps<T extends ElementType = 'button'> = {
   variant?: 'inputColor' | 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
-const IconButtonBase = <T extends ElementType>(
-  props: ButtonProps<T>,
-  ref: Ref<HTMLButtonElement>
-) => {
+const IconButtonBase = <T extends ElementType>(props: ButtonProps<T>, ref: Ref<ElementRef<T>>) => {
   const {
     as: Component = 'button',
     backgroundEffect = true,
@@ -32,15 +29,15 @@ const IconButtonBase = <T extends ElementType>(
   const iconButtonClasses = {
     button: clsx(
       s.button,
+      className,
       variant && s[variant],
       backgroundEffect && s.backgroundEffect,
-      !backgroundEffect && s.notBackgroundEffect,
-      className && className
+      !backgroundEffect && s.notBackgroundEffect
     ),
   }
 
   return (
-    <Component className={iconButtonClasses.button} ref={ref} {...rest}>
+    <Component className={iconButtonClasses.button} ref={ref as any} {...rest}>
       {children}
     </Component>
   )
