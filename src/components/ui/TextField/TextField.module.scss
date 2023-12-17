@@ -1,111 +1,141 @@
-.root {
-  .textFieldWrapper {
-    position: relative;
+.textFieldWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /** label  */
+  .labelText {
     display: flex;
-    flex-direction: column;
+    margin-left: 2px;
+    color: var(--color-dark-100);
+  }
 
-    /** label  */
-    .labelText {
-      display: flex;
-      margin-bottom: 5px;
+  /** textField */
+  .textField {
+    flex-shrink: 0;
+
+    width: 284px;
+    height: 36px;
+    padding: 6px 12px;
+
+    color: var(--color-dark-100);
+
+    background-color: var(--color-dark-900);
+    border: 1px solid var(--color-dark-300);
+    border-radius: 2px;
+
+    &::placeholder {
       color: var(--color-dark-100);
     }
 
-    .start {
-      justify-content: flex-start;
+    &.withIconStart {
+      padding-left: 35px;
     }
 
-    .end {
-      justify-content: flex-end;
+    &.withIconEnd {
+      padding-right: 35px;
     }
 
-    .iconStart {
-      pointer-events: none;
-
-      position: absolute;
-      top: 70%;
-      left: 12px;
-      transform: translateY(-50%);
-
-      display: grid;
-      place-items: center;
-
-      width: 20px;
-      height: 20px;
-
-      &.textField::placeholder {
-        padding-left: 30px;
-      }
+    &.withShowPassword {
+      padding-right: 43px;
     }
 
-    /** textField */
-    .textField {
-      flex-shrink: 0;
-
-      width: 284px;
-      height: 36px;
-      padding: 6px 12px;
-
-      color: var(--color-dark-100);
-
+    &:disabled {
+      color: var(--color-dark-300);
       background-color: var(--color-dark-900);
       border: 1px solid var(--color-dark-300);
-      border-radius: 2px;
-
-      &::placeholder {
-        color: var(--color-dark-100);
-      }
-
-      &.placeholderWithIcon {
-        padding-left: 35px;
-      }
-
-      &:disabled {
-        color: var(--color-dark-300);
-        background-color: var(--color-dark-900);
-        border: 1px solid var(--color-dark-300);
-      }
-
-      &:focus-visible {
-        color: var(--color-light-100);
-        border: 1px solid var(--color-light-100);
-      }
-
-      &:focus-within:not(.errorText) {
-        border: 1px solid blue;
-      }
-
-      &:hover:not(&:disabled, .errorText) {
-        background-color: var(--color-dark-700);
-        border: 1px solid var(--color-dark-100);
-      }
     }
 
-    .errorText {
-      color: var(--color-danger-300);
-      border: 1px solid var(--color-danger-300);
-
-      &.errorText::placeholder {
-        color: var(--color-danger-300);
-      }
+    &:focus-visible {
+      color: var(--color-light-100);
+      border: 1px solid var(--color-light-100);
     }
 
-    .errorText:focus-visible {
-      color: var(--color-danger-300);
-      border: 1px solid var(--color-danger-300);
-      outline: 1px solid var(--color-danger-300);
+    &:focus-within:not(.errorText) {
+      border: var(--color-info-700);
     }
 
-    .errorSpan {
-      position: absolute;
-      bottom: -21px;
+    &:hover:not(&:disabled, .errorText) {
+      background-color: var(--color-dark-700);
+      border: 1px solid var(--color-dark-100);
+    }
+  }
 
-      font-family: Roboto, serif;
-      font-size: 12px;
-      font-weight: 400;
-      font-style: normal;
-      line-height: 24px; /* 200% */
+  .textField.fullwidth {
+    width: 100%;
+  }
+
+  .errorText {
+    color: var(--color-danger-300);
+    border: 1px solid var(--color-danger-300);
+
+    &.errorText::placeholder {
       color: var(--color-danger-300);
     }
   }
+
+  .errorText:focus-visible {
+    color: var(--color-danger-300);
+    border: 1px solid var(--color-danger-300);
+    outline: 1px solid var(--color-danger-300);
+  }
+
+  .errorSpan {
+    position: absolute;
+    bottom: -21px;
+
+    margin-left: 2px;
+
+    font-family: Roboto, serif;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px; /* 200% */
+    color: var(--color-danger-300);
+  }
+}
+
+.textFieldWrapper.fullwidth {
+  width: 100%;
+}
+
+.iconStart {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+
+  display: grid;
+  place-items: center;
+
+  //&.textField::placeholder {
+  //  padding-left: 30px;
+  //}
+}
+
+.iconEnd {
+  position: absolute;
+  z-index: 1;
+  top: 70%;
+  right: 3%;
+  transform: translateY(-50%);
+
+  display: grid;
+  place-items: center;
+}
+
+.showPassword {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 15px;
 }

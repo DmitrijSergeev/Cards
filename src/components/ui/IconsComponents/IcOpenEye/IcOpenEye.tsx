@@ -1,6 +1,6 @@
 import { IconProps, IconWrapper } from '@/common/icons/IconWrapper'
 
-export const IcEye = (allProps: IconProps) => {
+export const IcOpenEye = (allProps: IconProps) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (

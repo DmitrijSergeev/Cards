@@ -4,10 +4,9 @@ import { IconProps } from '@/common/icons/IconWrapper'
 import { clsx } from 'clsx'
 
 import s from './IconButton.module.scss'
-
 type IconType = React.ReactElement<IconProps>
 
-type ButtonProps<T extends ElementType = 'button'> = {
+export type ButtonIconProps<T extends ElementType = 'button'> = {
   as?: T
   backgroundEffect?: boolean
   children?: IconType
@@ -16,7 +15,10 @@ type ButtonProps<T extends ElementType = 'button'> = {
   variant?: 'inputColor' | 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
-const IconButtonBase = <T extends ElementType>(props: ButtonProps<T>, ref: Ref<ElementRef<T>>) => {
+const IconButtonBase = <T extends ElementType>(
+  props: ButtonIconProps<T>,
+  ref: Ref<ElementRef<T>>
+) => {
   const {
     as: Component = 'button',
     backgroundEffect = true,
@@ -44,17 +46,3 @@ const IconButtonBase = <T extends ElementType>(props: ButtonProps<T>, ref: Ref<E
 }
 
 export const IconButton = forwardRef(IconButtonBase)
-
-// const iconButtonClasses = {
-//   button: clsx(
-//     s.button,
-//     variant && s[variant],
-//     // eslint-disable-next-line no-nested-ternary
-//     backgroundEffect
-//       ? !disabled
-//         ? s.backgroundEffect
-//         : s.notBackgroundEffect
-//       : s.notBackgroundEffect,
-//     className && className
-//   ),
-// }
