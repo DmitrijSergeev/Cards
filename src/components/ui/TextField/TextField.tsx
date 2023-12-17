@@ -3,6 +3,7 @@ import React, { ChangeEvent, ComponentProps, forwardRef, useState } from 'react'
 import { castomUseId } from '@/common/hooks/useId'
 import { IconProps } from '@/common/icons/IconWrapper'
 import { IconButton } from '@/components/ui/Buttons/IconButton'
+import { IcCloseEye } from '@/components/ui/IconsComponents/IcCloseEye/IcCloseEye'
 import { IcOpenEye } from '@/components/ui/IconsComponents/IcOpenEye/IcOpenEye'
 import { Typography } from '@/components/ui/Typography'
 import { clsx } from 'clsx'
@@ -114,7 +115,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
         <div className={classNames.showPassword}>
           {showPassword ? (
             <IconButton onClick={onClickHandleShowPass}>
-              <IcOpenEye size={1.3} />
+              <IcCloseEye size={1.3} />
             </IconButton>
           ) : (
             <IconButton onClick={onClickHandleShowPass}>
