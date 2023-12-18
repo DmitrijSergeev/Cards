@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ComponentProps, forwardRef, useState } from 'react'
 
-import { castomUseId } from '@/common/hooks/useId'
+import { useId } from '@/common/hooks/useId'
 import { IconButton } from '@/components/ui/Buttons/IconButton'
 import { IcClear } from '@/components/ui/IconsComponents/IcClear/IcClear'
 import { IcCloseEye } from '@/components/ui/IconsComponents/IcCloseEye/IcCloseEye'
@@ -11,7 +11,7 @@ import { clsx } from 'clsx'
 
 import s from './TextField.module.scss'
 
-type TextFieldType = {
+type BaseTextFieldProps = {
   disabled?: boolean
   error?: boolean | null | string
   fullwidth?: boolean
@@ -19,10 +19,24 @@ type TextFieldType = {
   label?: string
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   onChangeText?: (value: string) => void
+  onClickSearch?: () => void
   onEnter?: () => void
   placeholder?: string
-} & ComponentProps<'input'>
-export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref) => {
+} & Omit<ComponentProps<'input'>, 'type'>
+
+type SearchTextFieldProps = BaseTextFieldProps & {
+  type: 'search'
+}
+type PasswordTextFieldProps = BaseTextFieldProps & {
+  type: 'password'
+}
+type TextTextFieldProps = BaseTextFieldProps & {
+  type?: 'text'
+}
+
+type TextFieldProps = PasswordTextFieldProps | SearchTextFieldProps | TextTextFieldProps
+
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
   const {
     disabled,
     error,
@@ -32,23 +46,30 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
     onBlur: customOnBlur,
     onChange,
     onChangeText,
+    onClickSearch,
     onEnter,
     onKeyDown,
     placeholder,
-    type,
+    type = 'text',
     ...respProps
   } = props
 
+  const [value, setValue] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+
+  const showClearButton = value.length! > 0
   const textFieldType = type === 'password' && showPassword ? 'text' : type
-  const textFieldId = castomUseId()
+  const textFieldId = useId(id, 'textField')
 
   const onClickHandleShowPass = () => {
     setShowPassword(!showPassword)
   }
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e)
-    onChangeText?.(e.currentTarget.value)
+    const value = e.currentTarget.value
+
+    onChangeText?.(value)
+    setValue(value)
   }
   const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
     customOnBlur?.(e)
@@ -58,22 +79,31 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
     onEnter && e.key === 'Enter' && onEnter()
   }
 
+  const onClickHandlerSearchButton = () => {
+    if (type === 'search' && onClickSearch && !disabled) {
+      onClickSearch()
+    }
+  }
+
+  const onClickClearSearchText = () => {
+    if (!disabled) {
+      setValue('')
+    }
+  }
+
   const classNames = {
+    btnClear: clsx(type === 'search' && s.btnClear, label && s.withLabel),
+    btnSearch: clsx(type === 'search' && s.btnSearch, label && s.withLabel),
     button: clsx(s.button),
     error: clsx(s.error),
-    icClear: clsx(
-      type === 'search' && s.icClear,
-      type === 'search' && s.withSearch,
-      label && s.withLabel
-    ),
-    icSearch: clsx(type === 'search' && s.icSearch, label && s.withLabel),
     label: clsx(s.labelText),
     showPassword: clsx(s.showPassword, label && s.withLabel, type === 'password' && s.fullwidth),
     textField: clsx(
       s.textField,
       fullwidth && s.fullwidth,
       error && s.errorText,
-      type === 'password' && s.withShowPassword
+      type === 'password' && s.withShowPassword,
+      type === 'search' && s.withSearchType
     ),
     textFieldWrapper: clsx(s.textFieldWrapper, fullwidth && s.fullwidth),
   }
@@ -82,17 +112,27 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
     <div className={classNames.textFieldWrapper}>
       {type === 'search' && (
         <>
-          <IconButton className={classNames.icSearch} variant={'secondary'}>
+          <IconButton
+            className={classNames.btnSearch}
+            onClick={onClickHandlerSearchButton}
+            variant={'secondary'}
+          >
             <IcSearch size={1.3} />
           </IconButton>
-          <IconButton className={classNames.icClear}>
-            <IcClear size={1.3} />
-          </IconButton>
+          {showClearButton && (
+            <IconButton
+              className={classNames.btnClear}
+              onClick={onClickClearSearchText}
+              type={'reset'}
+            >
+              <IcClear size={1.3} />
+            </IconButton>
+          )}
         </>
       )}
       {label && (
         <Typography asChild className={classNames.label} variant={'Body2'}>
-          <label>{label}</label>
+          <label htmlFor={textFieldId}>{label}</label>
         </Typography>
       )}
       <input
@@ -105,6 +145,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
         placeholder={placeholder}
         ref={ref}
         type={textFieldType}
+        value={value}
         {...respProps}
       />
       {error && (

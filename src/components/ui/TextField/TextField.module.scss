@@ -22,6 +22,14 @@
     padding-right: 40px;
   }
 
+  &.withSearchType {
+    padding: 0 40px;
+  }
+
+  &.withClear {
+    padding-right: 30px;
+  }
+
   &:disabled {
     color: var(--color-dark-300);
     border: 1px solid var(--color-dark-300);
@@ -31,7 +39,7 @@
     color: var(--color-dark-300);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     color: var(--color-light-100);
     border: 1px solid var(--color-light-100);
   }
@@ -56,7 +64,6 @@
 
   /** label  */
   .labelText {
-    display: flex;
     margin-left: 2px;
     color: var(--color-dark-100);
   }
@@ -102,6 +109,10 @@
   width: 100%;
 }
 
+.textFieldWrapper:not(:focus-within) .btnClear {
+  display: none;
+}
+
 .showPassword {
   cursor: pointer;
 
@@ -130,7 +141,7 @@
   }
 }
 
-.icClear {
+.btnClear {
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -147,7 +158,7 @@
   }
 }
 
-.icSearch {
+.btnSearch {
   position: absolute;
   z-index: 1;
   top: 50%;
