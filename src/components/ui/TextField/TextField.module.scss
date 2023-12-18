@@ -1,7 +1,58 @@
+.textField {
+  flex-shrink: 0;
+
+  width: 284px;
+  height: 36px;
+  padding: 6px 12px;
+
+  color: var(--color-dark-100);
+
+  background-color: transparent;
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+  outline: none;
+
+  transition: 0.2s ease-out;
+
+  &::placeholder {
+    color: var(--color-dark-100);
+  }
+
+  &.withShowPassword {
+    padding-right: 40px;
+  }
+
+  &:disabled {
+    color: var(--color-dark-300);
+    border: 1px solid var(--color-dark-300);
+  }
+
+  &:disabled::placeholder {
+    color: var(--color-dark-300);
+  }
+
+  &:active {
+    color: var(--color-light-100);
+    border: 1px solid var(--color-light-100);
+  }
+
+  &:focus-within:not(:active) {
+    border: 1px solid var(--color-info-700);
+    outline: 1px solid var(--color-info-700);
+  }
+
+  &:hover:not(&:disabled, .errorText, :focus) {
+    background-color: var(--color-dark-700);
+    border: 1px solid var(--color-dark-100);
+    transition: 0.2s ease-out;
+  }
+}
+
 .textFieldWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 284px;
 
   /** label  */
   .labelText {
@@ -11,56 +62,6 @@
   }
 
   /** textField */
-  .textField {
-    flex-shrink: 0;
-
-    width: 284px;
-    height: 36px;
-    padding: 6px 12px;
-
-    color: var(--color-dark-100);
-
-    background-color: var(--color-dark-900);
-    border: 1px solid var(--color-dark-300);
-    border-radius: 2px;
-
-    &::placeholder {
-      color: var(--color-dark-100);
-    }
-
-    &.withIconStart {
-      padding-left: 35px;
-    }
-
-    &.withIconEnd {
-      padding-right: 35px;
-    }
-
-    &.withShowPassword {
-      padding-right: 43px;
-    }
-
-    &:disabled {
-      color: var(--color-dark-300);
-      background-color: var(--color-dark-900);
-      border: 1px solid var(--color-dark-300);
-    }
-
-    &:focus-visible {
-      color: var(--color-light-100);
-      border: 1px solid var(--color-light-100);
-    }
-
-    &:focus-within:not(.errorText) {
-      border: var(--color-info-700);
-    }
-
-    &:hover:not(&:disabled, .errorText) {
-      background-color: var(--color-dark-700);
-      border: 1px solid var(--color-dark-100);
-    }
-  }
-
   .textField.fullwidth {
     width: 100%;
   }
@@ -80,49 +81,25 @@
     outline: 1px solid var(--color-danger-300);
   }
 
-  .errorSpan {
+  .error {
     position: absolute;
-    bottom: -21px;
+    bottom: -34%;
 
-    margin-left: 2px;
+    display: flex;
+
+    width: 100%;
 
     font-family: Roboto, serif;
     font-size: 12px;
     font-weight: 400;
     font-style: normal;
-    line-height: 24px; /* 200% */
+    line-height: 24px;
     color: var(--color-danger-300);
   }
 }
 
 .textFieldWrapper.fullwidth {
   width: 100%;
-}
-
-.iconStart {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-
-  display: grid;
-  place-items: center;
-
-  //&.textField::placeholder {
-  //  padding-left: 30px;
-  //}
-}
-
-.iconEnd {
-  position: absolute;
-  z-index: 1;
-  top: 70%;
-  right: 3%;
-  transform: translateY(-50%);
-
-  display: grid;
-  place-items: center;
 }
 
 .showPassword {
@@ -138,4 +115,57 @@
   place-items: center;
 
   font-size: 15px;
+
+  &.withLabel {
+    top: 70%;
+  }
+
+  &.fullwidth {
+    right: 0.8%;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.icClear {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 15px;
+
+  &.withLabel {
+    top: 70%;
+  }
+}
+
+.icSearch {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 3%;
+  transform: translateY(-50%);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 15px;
+
+  &.withLabel {
+    top: 70%;
+  }
+}
+
+/** clear default cansel btn  at TextField */
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+  display: none;
 }

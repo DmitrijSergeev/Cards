@@ -4,6 +4,7 @@ import { IconProps } from '@/common/icons/IconWrapper'
 import { clsx } from 'clsx'
 
 import s from './IconButton.module.scss'
+
 type IconType = React.ReactElement<IconProps>
 
 export type ButtonIconProps<T extends ElementType = 'button'> = {
@@ -12,7 +13,7 @@ export type ButtonIconProps<T extends ElementType = 'button'> = {
   children?: IconType
   className?: string
   icon?: string
-  variant?: 'inputColor' | 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
 const IconButtonBase = <T extends ElementType>(

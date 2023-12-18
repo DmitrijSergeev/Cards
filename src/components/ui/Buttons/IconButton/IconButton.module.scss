@@ -116,7 +116,7 @@
   }
 
   &.secondary {
-    color: var(--color-dark-300);
+    color: var(--color-dark-100);
 
     &:focus:not(:disabled) {
       color: var(--color-dark-300);
@@ -137,57 +137,6 @@
 
     &:hover:not(:disabled, :active) {
       color: var(--color-dark-100);
-    }
-  }
-
-  &.inputColor {
-    color: var(--color-dark-100);
-
-    &:focus:not(:disabled) {
-      color: var(--color-light-100);
-
-      &.notBackgroundEffect {
-        background-color: rgb(128 128 128 / 0%);
-        border-radius: 1rem;
-        outline: none;
-      }
-
-      //&.backgroundEffect::before {
-      //  position: absolute;
-      //  inset: 0;
-      //
-      //  background-color: rgb(128 128 128 / 0%);
-      //  border-radius: 50%;
-      //
-      //  animation: pulsate 1s infinite alternate;
-      //
-      //  @keyframes pulsate {
-      //    0% {
-      //      transform: scale(0);
-      //    }
-      //
-      //    100% {
-      //      transform: scale(0);
-      //    }
-      //  }
-      //}
-    }
-
-    &:disabled {
-      color: var(--color-dark-600);
-    }
-
-    &:active:not(:disabled) {
-      color: var(--color-light-100);
-
-      &.backgroundEffect {
-        background-color: rgb(0 0 0 / 0%);
-        border-radius: 50%;
-      }
-    }
-
-    &:hover:not(:disabled, :active) {
-      color: var(--color-dark-50);
     }
   }
 }

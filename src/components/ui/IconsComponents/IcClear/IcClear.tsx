@@ -1,6 +1,6 @@
 import { IconProps, IconWrapper } from '@/common/icons/IconWrapper'
 
-export const CheckIcon = (allProps: IconProps) => {
+export const IcClear = (allProps: IconProps) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (
@@ -9,14 +9,14 @@ export const CheckIcon = (allProps: IconProps) => {
         <svg
           fill={'none'}
           height={'100%'}
-          viewBox={'0 0 18 18'}
+          viewBox={'0 0 24 24'}
           width={'100%'}
           xmlns={'http://www.w3.org/2000/svg'}
           {...props}
         >
           <path
             d={
-              'M16 0H2a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V2a2 2 0 00-2-2zM7 14L2 9l1.41-1.41L7 11.17l7.59-7.59L16 5l-9 9z'
+              'm13.4 12 4.3-4.3a1 1 0 1 0-1.4-1.4L12 10.6 7.7 6.3a1 1 0 0 0-1.4 1.4l4.3 4.3-4.3 4.3A1 1 0 0 0 7 18a1 1 0 0 0 .7-.3l4.3-4.3 4.3 4.3a1 1 0 1 0 1.4-1.4L13.4 12Z'
             }
             fill={'currentColor'}
           />

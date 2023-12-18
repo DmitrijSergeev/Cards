@@ -1,20 +1,20 @@
 import React, { ChangeEvent, ComponentProps, forwardRef, useState } from 'react'
 
 import { castomUseId } from '@/common/hooks/useId'
-import { IconProps } from '@/common/icons/IconWrapper'
 import { IconButton } from '@/components/ui/Buttons/IconButton'
+import { IcClear } from '@/components/ui/IconsComponents/IcClear/IcClear'
 import { IcCloseEye } from '@/components/ui/IconsComponents/IcCloseEye/IcCloseEye'
 import { IcOpenEye } from '@/components/ui/IconsComponents/IcOpenEye/IcOpenEye'
+import { IcSearch } from '@/components/ui/IconsComponents/IcSearch/IcSearch'
 import { Typography } from '@/components/ui/Typography'
 import { clsx } from 'clsx'
 
 import s from './TextField.module.scss'
 
 type TextFieldType = {
-  errorText?: boolean | null | string
+  disabled?: boolean
+  error?: boolean | null | string
   fullwidth?: boolean
-  iconEnd?: IconProps
-  iconStart?: IconProps
   id?: string
   label?: string
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
@@ -24,10 +24,9 @@ type TextFieldType = {
 } & ComponentProps<'input'>
 export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref) => {
   const {
-    errorText,
+    disabled,
+    error,
     fullwidth,
-    iconEnd,
-    iconStart,
     id,
     label,
     onBlur: customOnBlur,
@@ -40,20 +39,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
     ...respProps
   } = props
 
-  // const hasIconStart = !!iconStart
-  // const hasButtonIconStart = !!buttonIconStart
-  //
-  // if (hasIconStart && hasButtonIconStart) {
-  //   console.error("TextField: Both 'iconStart' and 'buttonIconStart' cannot be used together.")
-  //
-  //   return null
-  // }
   const [showPassword, setShowPassword] = useState(false)
   const textFieldType = type === 'password' && showPassword ? 'text' : type
   const textFieldId = castomUseId()
 
   const onClickHandleShowPass = () => {
-    setShowPassword(showPassword => !showPassword)
+    setShowPassword(!showPassword)
   }
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e)
@@ -68,17 +59,20 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
   }
 
   const classNames = {
-    errorSpan: clsx(s.errorSpan),
-    iconEnd: clsx(iconEnd && s.iconEnd),
-    iconStart: clsx(iconStart && s.iconStart),
+    button: clsx(s.button),
+    error: clsx(s.error),
+    icClear: clsx(
+      type === 'search' && s.icClear,
+      type === 'search' && s.withSearch,
+      label && s.withLabel
+    ),
+    icSearch: clsx(type === 'search' && s.icSearch, label && s.withLabel),
     label: clsx(s.labelText),
-    showPassword: clsx(s.showPassword),
+    showPassword: clsx(s.showPassword, label && s.withLabel, type === 'password' && s.fullwidth),
     textField: clsx(
       s.textField,
       fullwidth && s.fullwidth,
-      iconStart && s.withIconStart,
-      iconEnd && s.withIconEnd,
-      errorText && s.errorText,
+      error && s.errorText,
       type === 'password' && s.withShowPassword
     ),
     textFieldWrapper: clsx(s.textFieldWrapper, fullwidth && s.fullwidth),
@@ -86,16 +80,24 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
 
   return (
     <div className={classNames.textFieldWrapper}>
+      {type === 'search' && (
+        <>
+          <IconButton className={classNames.icSearch} variant={'secondary'}>
+            <IcSearch size={1.3} />
+          </IconButton>
+          <IconButton className={classNames.icClear}>
+            <IcClear size={1.3} />
+          </IconButton>
+        </>
+      )}
       {label && (
         <Typography asChild className={classNames.label} variant={'Body2'}>
           <label>{label}</label>
         </Typography>
       )}
-      {iconStart && (
-        <div className={classNames.iconStart}>{iconStart ? <>{iconStart}</> : <></>}</div>
-      )}
       <input
         className={classNames.textField}
+        disabled={disabled}
         id={textFieldId}
         onBlur={onBlurCallback}
         onChange={onChangeCallback}
@@ -105,20 +107,19 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldType>((props, ref
         type={textFieldType}
         {...respProps}
       />
-      {errorText && (
-        <Typography asChild className={classNames.errorSpan} id={textFieldId}>
-          <span>{errorText}</span>
+      {error && (
+        <Typography asChild className={classNames.error} id={textFieldId}>
+          <span>{error}</span>
         </Typography>
       )}
-      {iconEnd && <div className={classNames.iconEnd}>{iconEnd ? <>{iconEnd}</> : <></>}</div>}
       {type === 'password' && (
         <div className={classNames.showPassword}>
           {showPassword ? (
-            <IconButton onClick={onClickHandleShowPass}>
+            <IconButton disabled={disabled} onClick={onClickHandleShowPass}>
               <IcCloseEye size={1.3} />
             </IconButton>
           ) : (
-            <IconButton onClick={onClickHandleShowPass}>
+            <IconButton disabled={disabled} onClick={onClickHandleShowPass}>
               <IcOpenEye size={1.3} />
             </IconButton>
           )}

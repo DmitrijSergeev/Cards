@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactElement, forwardRef } from 'react'
 
-import { CheckIcon } from '@/components/ui/IconsComponents/checkboxIcons/CheckIcon'
+import { IcCheck } from '@/components/ui/IconsComponents/IcCheck/IcCheck'
 import { Typography } from '@/components/ui/Typography'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { clsx } from 'clsx'
@@ -53,7 +53,7 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
           >
             {checked && (
               <CheckboxRadix.Indicator className={classNames.indicator} forceMount>
-                <CheckIcon size={1.8} />
+                <IcCheck size={1.8} />
               </CheckboxRadix.Indicator>
             )}
           </CheckboxRadix.Root>
