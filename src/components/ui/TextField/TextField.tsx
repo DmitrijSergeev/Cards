@@ -114,6 +114,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
         <>
           <IconButton
             className={classNames.btnSearch}
+            disabled={disabled}
             onClick={onClickHandlerSearchButton}
             variant={'secondary'}
           >
@@ -122,6 +123,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
           {showClearButton && (
             <IconButton
               className={classNames.btnClear}
+              disabled={disabled}
               onClick={onClickClearSearchText}
               type={'reset'}
             >
