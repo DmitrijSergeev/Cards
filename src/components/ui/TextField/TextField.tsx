@@ -97,7 +97,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
     button: clsx(s.button),
     error: clsx(s.error),
     label: clsx(s.labelText),
-    showPassword: clsx(s.showPassword, label && s.withLabel, type === 'password' && s.fullwidth),
+    showPassword: clsx(s.showPassword, label && s.withLabel, fullwidth && s.showPassWithFullwidth),
     textField: clsx(
       s.textField,
       fullwidth && s.fullwidth,

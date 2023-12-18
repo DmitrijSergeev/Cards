@@ -15,7 +15,9 @@ export function App() {
     <>
       <div>Hello world!</div>
       <TextField
-        disabled
+        // fullwidth
+        // disabled
+        error={'Text'}
         label={'input'}
         onChange={event => {
           console.log(event.currentTarget.value)

@@ -33,7 +33,7 @@
     color: var(--color-dark-100);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     color: var(--color-light-100);
 
     //.backgroundEffect {
