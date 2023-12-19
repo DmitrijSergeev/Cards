@@ -33,10 +33,10 @@ export const IconButton = forwardRef(
     const iconButtonClasses = {
       button: clsx(
         s.button,
-        className,
         variant && s[variant],
         backgroundEffect && s.backgroundEffect,
-        !backgroundEffect && s.notBackgroundEffect
+        !backgroundEffect && s.notBackgroundEffect,
+        className
       ),
     }
 

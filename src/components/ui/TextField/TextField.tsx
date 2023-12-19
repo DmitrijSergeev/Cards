@@ -13,7 +13,8 @@ import s from './TextField.module.scss'
 
 type BaseTextFieldProps = {
   disabled?: boolean
-  error?: boolean | null | string
+  error?: boolean
+  errorMessage?: string
   fullwidth?: boolean
   id?: string
   label?: string
@@ -22,24 +23,14 @@ type BaseTextFieldProps = {
   onClickSearch?: () => void
   onEnter?: () => void
   placeholder?: string
+  type?: 'password' | 'search' | 'text'
 } & Omit<ComponentProps<'input'>, 'type'>
 
-type SearchTextFieldProps = BaseTextFieldProps & {
-  type: 'search'
-}
-type PasswordTextFieldProps = BaseTextFieldProps & {
-  type: 'password'
-}
-type TextTextFieldProps = BaseTextFieldProps & {
-  type?: 'text'
-}
-
-type TextFieldProps = PasswordTextFieldProps | SearchTextFieldProps | TextTextFieldProps
-
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
+export const TextField = forwardRef<HTMLInputElement, BaseTextFieldProps>((props, ref) => {
   const {
     disabled,
     error,
+    errorMessage,
     fullwidth,
     id,
     label,
@@ -93,10 +84,17 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
 
   const classNames = {
     btnClear: clsx(type === 'search' && s.btnClear, label && s.withLabel),
-    btnSearch: clsx(type === 'search' && s.btnSearch, label && s.withLabel),
+    btnSearch: clsx(
+      type === 'search' && s.btnSearch,
+      label && s.withLabel,
+      fullwidth && s.btnSearchWithFullWidth
+    ),
     button: clsx(s.button),
-    error: clsx(s.error),
-    label: clsx(s.labelText),
+    error: clsx(s.error, disabled && s.errorWithDisabled),
+    iconSearch: clsx(s.iconSearch),
+    iconShowPass: clsx(s.iconShowPass),
+    label: clsx(s.labelText, disabled && s.labelWithDisabled),
+    showPassBtn: clsx(s.showPassBtn),
     showPassword: clsx(s.showPassword, label && s.withLabel, fullwidth && s.showPassWithFullwidth),
     textField: clsx(
       s.textField,
@@ -118,7 +116,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
             onClick={onClickHandlerSearchButton}
             variant={'secondary'}
           >
-            <IcSearch size={1.3} />
+            <IcSearch className={classNames.iconSearch} size={1.3} />
           </IconButton>
           {showClearButton && (
             <IconButton
@@ -152,18 +150,26 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
       />
       {error && (
         <Typography asChild className={classNames.error} id={textFieldId}>
-          <span>{error}</span>
+          <span>{errorMessage}</span>
         </Typography>
       )}
       {type === 'password' && (
         <div className={classNames.showPassword}>
           {showPassword ? (
-            <IconButton disabled={disabled} onClick={onClickHandleShowPass}>
-              <IcCloseEye size={1.3} />
+            <IconButton
+              className={classNames.showPassBtn}
+              disabled={disabled}
+              onClick={onClickHandleShowPass}
+            >
+              <IcCloseEye className={classNames.iconShowPass} size={1.3} />
             </IconButton>
           ) : (
-            <IconButton disabled={disabled} onClick={onClickHandleShowPass}>
-              <IcOpenEye size={1.3} />
+            <IconButton
+              className={classNames.showPassBtn}
+              disabled={disabled}
+              onClick={onClickHandleShowPass}
+            >
+              <IcOpenEye className={classNames.iconShowPass} size={1.3} />
             </IconButton>
           )}
         </div>

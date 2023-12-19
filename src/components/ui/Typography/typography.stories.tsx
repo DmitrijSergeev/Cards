@@ -26,21 +26,6 @@ const meta = {
     },
   },
   component: Typography,
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-      values: [
-        {
-          name: 'dark',
-          value: '#000000',
-        },
-        {
-          name: 'light',
-          value: '#ffffff',
-        },
-      ],
-    },
-  },
   tags: ['autodocs'],
   title: 'Components/Typography',
 } satisfies Meta<typeof Typography>
