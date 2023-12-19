@@ -47,7 +47,9 @@ function getComponent(variant: VariantType) {
     case 'Body1':
     case 'Body2':
       return 'p'
-
+    case 'Link1':
+    case 'Link2':
+      return 'a'
     default:
       return 'p'
   }
