@@ -55,6 +55,7 @@ export const AllTextFields: FC = () => (
     <div>
       <h1 style={{ display: 'flex', justifyContent: 'center' }}>Stand TextFields:</h1>
       <h3 style={{ display: 'flex', justifyContent: 'center' }}>Type: text, password, search</h3>
+      <div className={cn.separator}></div>
       <div style={{ alignItems: 'center', display: 'flex' }}>
         <h4 style={{ marginRight: '10px' }}>Kinds:</h4>
         <p>default</p>
