@@ -1,16 +1,22 @@
-import { ReactNode } from 'react'
+import { ComponentPropsWithoutRef, forwardRef } from 'react'
+
+import { Slot } from '@radix-ui/react-slot'
+import { clsx } from 'clsx'
 
 import s from './Card.module.scss'
 
-export type CardType = {
-  children?: ReactNode
+export type CardProps = {
+  asChild?: boolean
   className?: string
-}
+} & ComponentPropsWithoutRef<'div'>
 
-export const Card = (props: CardType) => {
-  const { children, className } = props
+export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+  const { asChild, className, ...otherProps } = props
 
-  const cardClassName = `${s.card} ${className ? className : ''}`
+  const classNames = {
+    wrapper: clsx(s.wrapper, className && className),
+  }
+  const Component = asChild ? Slot : 'div'
 
-  return <div className={cardClassName}>{children}</div>
-}
+  return <Component className={classNames.wrapper} ref={ref} {...otherProps} />
+})
