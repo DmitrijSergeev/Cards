@@ -152,7 +152,7 @@ export const TextFieldDefaultTypeSearch: Story = {
   args: {
     disabled: false,
     errorMessage: 'this is error',
-    label: 'this is text field',
+    label: 'this is text field search',
     placeholder: '...enter text',
     type: 'search',
   },
@@ -161,7 +161,7 @@ export const TextFieldDefaultTypePassword: Story = {
   args: {
     disabled: false,
     errorMessage: 'this is error',
-    label: 'this is text field',
+    label: 'this is text field password',
     placeholder: '...enter text',
     type: 'password',
   },
@@ -176,7 +176,7 @@ export const TextFieldWithDisabled: Story = {
 export const TextFieldWithDisabledTypeSearch: Story = {
   args: {
     disabled: true,
-    label: 'this is text field disabled',
+    label: 'this is text field disabled search',
     placeholder: '...enter text',
     type: 'search',
   },
@@ -184,7 +184,7 @@ export const TextFieldWithDisabledTypeSearch: Story = {
 export const TextFieldWithDisabledTypePassword: Story = {
   args: {
     disabled: true,
-    label: 'this is text field disabled',
+    label: 'this is text field disabled password',
     placeholder: '...enter text',
     type: 'password',
   },
@@ -252,7 +252,7 @@ export const TextFieldWithDisabledTypePasswordFullwidth: Story = {
   args: {
     disabled: true,
     fullwidth: true,
-    label: 'this is text field disabled',
+    label: 'this is text field disabled type password',
     placeholder: '...enter text',
     type: 'password',
   },
