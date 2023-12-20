@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef } from 'react'
 
-import { IconProps } from '@/common/icons/IconWrapper'
+import { IconProps } from '@/components/ui/IconsComponents/IconWrapper'
 import { clsx } from 'clsx'
 
 import s from './IconButton.module.scss'

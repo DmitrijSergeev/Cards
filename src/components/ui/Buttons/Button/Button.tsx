@@ -1,37 +1,35 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
+
+import { Slot } from '@radix-ui/react-slot'
+import { clsx } from 'clsx'
 
 import s from './Button.module.scss'
 
-export type ButtonProps<T extends ElementType = 'button'> = {
-  as?: T
+export type ButtonProps = {
+  asChild?: boolean
   children?: ReactNode
   className?: string
   fullWidth?: boolean
-  icon?: string
   variant?: 'link' | 'primary' | 'secondary' | 'tertiary'
-} & ComponentPropsWithoutRef<T>
+} & ComponentPropsWithoutRef<'button'>
 
-export const Button = <T extends ElementType>(props: ButtonProps<T>) => {
-  const {
-    as: Component = 'button',
-    children,
-    className,
-    fullWidth,
-    icon,
-    variant = 'primary',
-    ...rest
-  } = props
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { asChild, children, className, fullWidth, variant = 'primary', ...rest } = props
 
-  const buttonClasses = [s[variant], s.button, fullWidth ? s.fullWidth : '', className]
+  const isLink = asChild && variant === 'link'
+  const classNames = clsx(
+    s.button,
+    variant && s[variant],
+    isLink && s.link,
+    fullWidth && s.fullWidth,
+    className
+  )
 
-  if (icon) {
-    buttonClasses.push(`${s.withIcon}`)
-  }
+  const Component = asChild ? Slot : 'button'
 
   return (
-    <Component className={buttonClasses.join(' ')} {...rest}>
-      {icon && <img alt={'Icon'} src={icon} />}
+    <Component className={classNames} ref={ref} {...rest}>
       {children}
     </Component>
   )
-}
+})

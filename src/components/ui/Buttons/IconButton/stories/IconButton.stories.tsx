@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { IcEye } from '@/components/ui/IconsComponents/IcEye/IcEye'
-
-import { IconButton } from '../Index'
+import { IconButton } from '@/components/ui/Buttons/IconButton'
+import { IcOpenEye } from '@/components/ui/IconsComponents/IcOpenEye/IcOpenEye'
 
 const meta = {
   argTypes: {
@@ -29,7 +28,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    children: <IcEye size={1.5} />,
+    children: <IcOpenEye size={1.5} />,
     disabled: false,
     variant: 'primary',
   },
@@ -37,7 +36,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    children: <IcEye size={1.5} />,
+    children: <IcOpenEye size={1.5} />,
     disabled: false,
     variant: 'secondary',
   },
@@ -45,7 +44,7 @@ export const Secondary: Story = {
 
 export const InputColors: Story = {
   args: {
-    children: <IcEye size={1.5} />,
+    children: <IcOpenEye size={1.5} />,
     disabled: false,
     variant: 'inputColor',
   },
@@ -54,7 +53,7 @@ export const InputColors: Story = {
 export const AsLink: Story = {
   args: {
     as: 'a',
-    children: <IcEye size={1.5} />,
+    children: <IcOpenEye size={1.5} />,
     href: 'https://www.google.com/',
     variant: 'primary',
   },

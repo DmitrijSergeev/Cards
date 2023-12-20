@@ -1,4 +1,4 @@
-import { IconProps, IconWrapper } from '@/common/icons/IconWrapper'
+import { IconProps, IconWrapper } from '@/components/ui/IconsComponents/IconWrapper'
 
 export const IcCheck = (allProps: IconProps) => {
   const { svgProps: props, ...restProps } = allProps
