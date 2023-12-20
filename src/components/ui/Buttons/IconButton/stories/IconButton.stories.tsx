@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    children: <IcOpenEye size={1.5} />,
+    children: <IcOpenEye size={1.3} />,
     disabled: false,
     variant: 'primary',
   },
@@ -36,7 +36,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    children: <IcOpenEye size={1.5} />,
+    children: <IcOpenEye size={1.3} />,
     disabled: false,
     variant: 'secondary',
   },
@@ -44,7 +44,7 @@ export const Secondary: Story = {
 
 export const InputColors: Story = {
   args: {
-    children: <IcOpenEye size={1.5} />,
+    children: <IcOpenEye size={1.3} />,
     disabled: false,
     variant: 'inputColor',
   },
@@ -53,7 +53,7 @@ export const InputColors: Story = {
 export const AsLink: Story = {
   args: {
     as: 'a',
-    children: <IcOpenEye size={1.5} />,
+    children: <IcOpenEye size={1.3} />,
     href: 'https://www.google.com/',
     variant: 'primary',
   },

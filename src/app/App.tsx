@@ -1,17 +1,12 @@
-import { Button } from '@/components/ui/Buttons/Button'
-import { Router } from '@/router'
+import { IconButton } from '@/components/ui/Buttons/IconButton'
+import { IcSearch } from '@/components/ui/IconsComponents/IcSearch/IcSearch'
+
+import s from './App.module.scss'
 
 export function App() {
   return (
     <>
-      <Button asChild variant={'link'}>
-        <a href={'https://google.com'}>Ссылка</a>
-      </Button>
-      <Button disabled variant={'link'}>
-        Как ссылка
-      </Button>
-
-      <Router />
+      <IcSearch />
     </>
   )
 }

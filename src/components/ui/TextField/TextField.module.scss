@@ -76,7 +76,7 @@
   /** label  */
   .labelText {
     display: inline-block;
-    width: auto;
+    width: max-content;
     margin-left: 2px;
     color: var(--color-dark-100);
   }

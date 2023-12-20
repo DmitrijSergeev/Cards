@@ -39,8 +39,11 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
     }
 
     return (
-      <Typography as={'label'} className={classNames.label} variant={'Body2'}>
+      <>
         <div className={classNames.checkboxWrapper}>
+          <Typography asChild className={classNames.label} variant={'Body2'}>
+            <label>{label}</label>
+          </Typography>
           <CheckboxRadix.Root
             checked={checked}
             className={classNames.root}
@@ -58,8 +61,7 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
             )}
           </CheckboxRadix.Root>
         </div>
-        {label}
-      </Typography>
+      </>
     )
   }
 )

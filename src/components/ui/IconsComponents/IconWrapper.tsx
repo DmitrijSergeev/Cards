@@ -34,3 +34,7 @@ export const IconWrapper = ({
     </span>
   )
 }
+
+//todo:
+// размеры по умолчанию иконок (small,medium,big,large) Это будет пропс который настраивается scss (как в кнопке с s[variant]
+// возможность менять цвет иконки через css
