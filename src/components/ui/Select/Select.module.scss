@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    color: var(--color-dark-100);
+  }
+
+  .trigger {
+    display: inline-flex;
+    flex-shrink: 0;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 210px;
+    height: 36px;
+    padding: 0 12px;
+
+    font-size: 13px;
+    line-height: 1;
+    color: var(--color-light-100);
+
+    background-color: var(--color-dark-900);
+    border: 1px solid var(--color-dark-300);
+    border-radius: 2px;
+    box-shadow: 0 2px 10px black;
+
+    &:focus-within,
+    &:focus-visible {
+      color: var(--color-light-100);
+      border: 1px solid var(--color-info-700);
+      outline: 1px solid var(--color-info-700);
+    }
+  }
+}

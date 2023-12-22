@@ -1,12 +1,11 @@
-import { IconButton } from '@/components/ui/Buttons/IconButton'
-import { IcSearch } from '@/components/ui/IconsComponents/IcSearch/IcSearch'
-
-import s from './App.module.scss'
+import { Select } from '@/components/ui/Select'
 
 export function App() {
+  const item = ['apple', 'kiwi', 'var', 5]
+
   return (
-    <>
-      <IcSearch />
-    </>
+    <div style={{ display: 'flex', marginLeft: '300px', marginTop: '300px' }}>
+      <Select items={item} label={'label select'} placeholder={'Select'} />
+    </div>
   )
 }
