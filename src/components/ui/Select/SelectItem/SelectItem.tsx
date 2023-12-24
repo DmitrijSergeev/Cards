@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactElement, ReactNode, forwardRef } from 'react'
 
+import { Typography } from '@/components/ui/Typography'
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
@@ -18,7 +19,9 @@ export const SelectItem = forwardRef<ElementRef<typeof SelectRadix.Item>, Select
 
     return (
       <SelectRadix.Item className={classNames.item} ref={ref} {...otherProps}>
-        <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
+        <SelectRadix.ItemText>
+          <Typography>{children}</Typography>
+        </SelectRadix.ItemText>
       </SelectRadix.Item>
     )
   }

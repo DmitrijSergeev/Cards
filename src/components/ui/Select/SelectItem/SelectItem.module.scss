@@ -1,0 +1,26 @@
+.item {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  min-width: 210px;
+  height: 36px;
+  padding: 0.3125rem 0.75rem;
+
+  background-color: var(--color-dark-900);
+  outline: none;
+
+  transition: 0.2s ease-in-out;
+
+  &.disabled {
+    color: var(--color-dark-300);
+  }
+
+  &:hover,
+  &[data-highlighted] {
+    color: var(--color-accent-300);
+    background-color: var(--color-accent-900);
+  }
+}
