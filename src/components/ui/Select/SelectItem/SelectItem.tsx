@@ -8,13 +8,14 @@ import s from './SelectItem.module.scss'
 
 type SelectItemProps = {
   children: ReactNode
+  classNameItem?: string
 } & Omit<ComponentPropsWithoutRef<typeof SelectRadix.Item>, 'asChild'>
 
 export const SelectItem = forwardRef<ElementRef<typeof SelectRadix.Item>, SelectItemProps>(
   (props, ref): ReactElement => {
-    const { children, ...otherProps } = props
+    const { children, classNameItem, ...otherProps } = props
     const classNames = {
-      item: clsx(s.item),
+      item: clsx(s.item, classNameItem),
     }
 
     return (

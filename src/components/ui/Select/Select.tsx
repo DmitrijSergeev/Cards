@@ -3,31 +3,33 @@ import { ComponentPropsWithoutRef, ElementRef, ReactElement, forwardRef } from '
 import { useId } from '@/common/hooks/useId'
 import { SelectItem } from '@/components/ui/Select/SelectItem'
 import { Typography } from '@/components/ui/Typography'
-import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
 import s from './Select.module.scss'
 
-type Options = {
+export type Options = {
   title: string
   value: string
 }
 
 type SelectProps = {
-  classNameItems?: string
+  classNameContent?: string
   classNameTrigger?: string
   disabled?: boolean
   id?: string
   items: Options[]
   label?: string
   placeholder?: string
+  position?: 'item-aligned' | 'popper'
+  side?: 'bottom' | 'left' | 'right' | 'top'
 } & Omit<ComponentPropsWithoutRef<typeof SelectRadix.Root>, 'asChild'>
 
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProps>(
   (props, ref): ReactElement => {
     const {
-      classNameItems,
+      classNameContent,
       classNameTrigger,
       disabled,
       id,
@@ -35,14 +37,17 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
       label,
       open = false,
       placeholder,
+      position = 'popper',
+      side = 'bottom',
       ...restProps
     } = props
     const selectId = useId(id, 'select')
     const classNames = {
-      content: clsx(s.content),
-      items: clsx(classNameItems),
+      content: clsx(s.content, classNameContent),
+      items: clsx(s.items),
       label: clsx(s.label, disabled && s.disabled),
-      trigger: clsx(s.trigger, disabled && s.disabled, classNameTrigger),
+      selectScrollButton: clsx(s.selectScrollButton),
+      trigger: clsx(s.trigger, classNameTrigger && classNameTrigger),
       triggerIcon: clsx(s.triggerIcon, disabled && s.disabled),
       wrapper: clsx(s.wrapper),
     }
@@ -57,7 +62,6 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
           )}
           <SelectRadix.Root {...restProps}>
             <SelectRadix.Trigger
-              aria-label={'Food'}
               className={classNames.trigger}
               disabled={disabled}
               id={selectId}
@@ -72,19 +76,29 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
             </SelectRadix.Trigger>
 
             <SelectRadix.Portal>
-              <SelectRadix.Content className={classNames.content} position={'popper'}>
-                <SelectRadix.ScrollUpButton />
+              <SelectRadix.Content
+                align={'start'}
+                className={classNames.content}
+                position={position}
+                side={side}
+                sideOffset={-6}
+              >
+                <SelectRadix.ScrollUpButton className={classNames.selectScrollButton}>
+                  <ChevronUpIcon />
+                </SelectRadix.ScrollUpButton>
                 <SelectRadix.Viewport>
                   {items.map((el, i) => {
                     return (
-                      <SelectItem className={classNames.items} key={i} value={el.value}>
+                      <SelectItem classNameItem={classNames.items} key={i} value={el.value}>
                         {el.title}
                       </SelectItem>
                     )
                   })}
                   <SelectRadix.Separator />
                 </SelectRadix.Viewport>
-                <SelectRadix.ScrollDownButton />
+                <SelectRadix.ScrollDownButton className={classNames.selectScrollButton}>
+                  <ChevronDownIcon />
+                </SelectRadix.ScrollDownButton>
                 <SelectRadix.Arrow />
               </SelectRadix.Content>
             </SelectRadix.Portal>

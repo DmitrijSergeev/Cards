@@ -2,37 +2,22 @@ import { useState } from 'react'
 
 import { Select } from '@/components/ui/Select'
 
-const item = [{ title: 'apple', value: 1 }]
-
-for (let i = 0; i < 100; i++) {
-  const randomTitle = generateRandomTitle()
-  const randomValue = generateRandomValue()
-
-  item.push({ title: randomTitle, value: randomValue })
-}
-
-function generateRandomTitle() {
-  const length = Math.floor(Math.random() * 20) + 1
-  const characters = 'abcdefghijklmnopqrstuvwxyz'
-  let randomTitle = ''
-
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length)
-
-    randomTitle += characters.charAt(randomIndex)
-  }
-
-  return randomTitle
-}
-
-function generateRandomValue() {
-  return Math.floor(Math.random() * 100) + 1
-}
+import s from './App.module.scss'
 
 export function App() {
-  const mapItem = item.map(el => ({ ...el, value: el.value.toString() }))
+  const items = [] as any[]
 
-  const [value, setValue] = useState('')
+  for (let i = 1; i <= 70; i++) {
+    const newItem = { title: `fruit${i}`, value: i }
+
+    items.push(newItem)
+  }
+  const mapItem = items.map(el => ({ ...el, value: el.value.toString() }))
+
+  mapItem.push({ title: 'looooooooooooooooooooooooooooooooooooong', value: '1000' })
+
+  const [value, setValue] = useState('2')
+
   const onChangeCallback = (value: string) => {
     setValue(value)
   }
@@ -40,10 +25,13 @@ export function App() {
   return (
     <div style={{ display: 'flex', marginLeft: '300px', marginTop: '300px' }}>
       <Select
+        classNameContent={s.items}
+        classNameTrigger={s.itemsT}
         items={mapItem}
         label={'label select'}
         onValueChange={onChangeCallback}
         placeholder={'Select'}
+        position={'popper'}
         value={value}
       />
     </div>
