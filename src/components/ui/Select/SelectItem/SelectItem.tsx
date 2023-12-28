@@ -6,7 +6,7 @@ import { clsx } from 'clsx'
 
 import s from './SelectItem.module.scss'
 
-type SelectItemProps = {
+export type SelectItemProps = {
   children: ReactNode
   classNameItem?: string
 } & Omit<ComponentPropsWithoutRef<typeof SelectRadix.Item>, 'asChild'>

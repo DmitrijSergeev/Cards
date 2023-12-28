@@ -1,13 +1,17 @@
 .item {
   cursor: pointer;
 
+  z-index: 999;
+
   display: flex;
   align-items: center;
   justify-content: left;
 
-  min-width: 210px;
   height: 36px;
+  min-height: var(--radix-select-trigger-height);
   padding: 0.3125rem 0.75rem;
+
+  color: var(--color-light-900);
 
   background-color: var(--color-dark-900);
   outline: none;

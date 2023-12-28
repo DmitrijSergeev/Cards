@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactElement, forwardRef } from 'react'
 
 import { useId } from '@/common/hooks/useId'
-import { SelectItem } from '@/components/ui/Select/SelectItem'
+import { SelectItemProps } from '@/components/ui/Select/SelectItem'
 import { Typography } from '@/components/ui/Typography'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
@@ -9,17 +9,12 @@ import { clsx } from 'clsx'
 
 import s from './Select.module.scss'
 
-export type Options = {
-  title: string
-  value: string
-}
-
 type SelectProps = {
+  children: ReactElement<SelectItemProps> | ReactElement<SelectItemProps>[]
   classNameContent?: string
   classNameTrigger?: string
   disabled?: boolean
   id?: string
-  items: Options[]
   label?: string
   placeholder?: string
   position?: 'item-aligned' | 'popper'
@@ -29,11 +24,11 @@ type SelectProps = {
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProps>(
   (props, ref): ReactElement => {
     const {
+      children,
       classNameContent,
       classNameTrigger,
       disabled,
       id,
-      items,
       label,
       open = false,
       placeholder,
@@ -87,13 +82,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectProp
                   <ChevronUpIcon />
                 </SelectRadix.ScrollUpButton>
                 <SelectRadix.Viewport>
-                  {items.map((el, i) => {
-                    return (
-                      <SelectItem classNameItem={classNames.items} key={i} value={el.value}>
-                        {el.title}
-                      </SelectItem>
-                    )
-                  })}
+                  {children}
                   <SelectRadix.Separator />
                 </SelectRadix.Viewport>
                 <SelectRadix.ScrollDownButton className={classNames.selectScrollButton}>

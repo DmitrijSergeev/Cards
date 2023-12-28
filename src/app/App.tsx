@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Select } from '@/components/ui/Select'
+import { SelectItem } from '@/components/ui/Select/SelectItem'
 
 import s from './App.module.scss'
 
@@ -14,8 +15,7 @@ export function App() {
   }
   const mapItem = items.map(el => ({ ...el, value: el.value.toString() }))
 
-  mapItem.push({ title: 'looooooooooooooooooooooooooooooooooooong', value: '1000' })
-
+  console.log(mapItem)
   const [value, setValue] = useState('2')
 
   const onChangeCallback = (value: string) => {
@@ -27,13 +27,22 @@ export function App() {
       <Select
         classNameContent={s.items}
         classNameTrigger={s.itemsT}
-        items={mapItem}
         label={'label select'}
-        onValueChange={onChangeCallback}
+        onValueChange={value => {
+          onChangeCallback(value)
+        }}
         placeholder={'Select'}
         position={'popper'}
         value={value}
-      />
+      >
+        {mapItem.map(el => {
+          return (
+            <SelectItem key={el.value} value={el.value}>
+              {el.title}
+            </SelectItem>
+          )
+        })}
+      </Select>
     </div>
   )
 }
