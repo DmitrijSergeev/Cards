@@ -1,0 +1,33 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+
+  h4 {
+    margin: 7px 0;
+  }
+}
+
+.fullWidth {
+  h4 {
+    margin: 20px 0 0;
+  }
+}
+
+.kindTextField {
+  color: #0a6638;
+}
+
+.separator {
+  width: 100%;
+  height: 2px;
+  opacity: 0.3;
+  background-color: var(--color-dark-100);
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

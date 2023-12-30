@@ -16,7 +16,7 @@ export function App() {
   const mapItem = items.map(el => ({ ...el, value: el.value.toString() }))
 
   console.log(mapItem)
-  const [value, setValue] = useState('2')
+  const [value, setValue] = useState('1')
 
   const onChangeCallback = (value: string) => {
     setValue(value)
