@@ -1,0 +1,105 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    width: max-content;
+    color: var(--color-dark-100);
+
+    &.disabled {
+      color: var(--color-dark-300);
+    }
+  }
+
+  .trigger {
+    display: inline-flex;
+    flex-shrink: 0;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+
+    min-width: 210px;
+    height: 36px;
+    padding: 0 12px;
+
+    font-size: 13px;
+    line-height: 1;
+    color: var(--color-light-100);
+
+    background-color: var(--color-dark-900);
+    border: 1px solid var(--color-dark-300);
+    border-radius: 2px;
+    box-shadow: 0 2px 10px black;
+
+    transition: 0.2s ease-in-out;
+
+    &[data-disabled] {
+      cursor: initial;
+      color: var(--color-dark-300);
+      border-color: var(--color-dark-300);
+
+      & p {
+        color: var(--color-dark-300);
+      }
+    }
+
+    &:focus-within,
+    &:focus-visible {
+      color: var(--color-light-100);
+      border: 1px solid var(--color-info-700);
+      outline: 1px solid var(--color-info-700);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-dark-500);
+      border-color: var(--color-dark-100);
+    }
+
+    .triggerIcon {
+      transform: rotate(0deg);
+      transition: all 0.3s ease-out;
+
+      &.disabled {
+        color: var(--color-dark-300);
+      }
+    }
+
+    &[data-state='open'] {
+      background-color: var(--color-dark-900);
+      border-color: var(--color-dark-100);
+      border-radius: 2px 2px 0 0;
+
+      .triggerIcon {
+        transform: rotate(180deg);
+        transition: all 0.3s ease-out;
+      }
+    }
+  }
+}
+
+.content {
+  transform-origin: var(--radix-select-content-transform-origin);
+
+  overflow: hidden;
+  overflow-y: auto;
+
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+
+  color: var(--color-light-900);
+
+  border: 1px solid var(--color-dark-100);
+  border-radius: 0 0 2px 2px;
+
+  .selectScrollButton {
+    cursor: default;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 25px;
+
+    color: var(--color-dark-100);
+  }
+}

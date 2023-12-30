@@ -1,0 +1,30 @@
+.item {
+  cursor: pointer;
+
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  height: 36px;
+  min-height: var(--radix-select-trigger-height);
+  padding: 0.3125rem 0.75rem;
+
+  color: var(--color-light-900);
+
+  background-color: var(--color-dark-900);
+  outline: none;
+
+  transition: 0.2s ease-in-out;
+
+  &.disabled {
+    color: var(--color-dark-300);
+  }
+
+  &:hover,
+  &[data-highlighted] {
+    color: var(--color-accent-300);
+    background-color: var(--color-accent-900);
+  }
+}
