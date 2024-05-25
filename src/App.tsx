@@ -5,7 +5,7 @@ import { Typography } from '@/components/ui/typography'
 export function App() {
   return (
     <div>
-      <Typography variant={'H1'}>
+      <Typography variant={'Caption'}>
         <div style={{ display: 'inline-flex', gap: '20px' }}>
           <Button>
             <LogOut />
