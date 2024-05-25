@@ -1,5 +1,7 @@
 import LogOut from '@/assets/icons/logOut'
+import Search from '@/assets/icons/search'
 import { Button } from '@/components/ui/button'
+import { TextField } from '@/components/ui/textfield'
 import { Typography } from '@/components/ui/typography'
 
 export function App() {
@@ -11,7 +13,11 @@ export function App() {
             <LogOut />
             Hello
           </Button>
-          <Button>Good Bye</Button>
+          <Button>
+            Good Bye
+            <Search />
+          </Button>
+          <TextField />
         </div>
       </Typography>
     </div>

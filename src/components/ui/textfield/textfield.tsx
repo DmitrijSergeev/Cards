@@ -13,14 +13,38 @@ export type TextFieldProps = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ containerProps, errorMessage, label, labelProps }, ref) => {
+  (
+    {
+      className,
+      containerProps,
+      errorMessage,
+      id,
+      label,
+      labelProps,
+      onChange,
+      placeholder,
+      type,
+      ...restProps
+    },
+    ref
+  ) => {
     const classNames = {
-      label: clsx(s.label),
+      label: clsx(s.label, labelProps?.className),
+      root: clsx(s.root, containerProps?.className),
     }
 
     return (
-      <div>
-        <Typography as={'label'} className={classNames.label} variant={'body2'}></Typography>
+      <div {...containerProps} className={classNames.root}>
+        {label && (
+          <Typography as={'label'} className={classNames.label} variant={'body2'} {...labelProps}>
+            {label}
+          </Typography>
+        )}
+        <div>
+          <input />
+          <button></button>
+          <button></button>
+        </div>
       </div>
     )
   }
