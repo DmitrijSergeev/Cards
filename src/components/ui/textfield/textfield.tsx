@@ -1,5 +1,6 @@
 import { ComponentProps, ComponentPropsWithoutRef, forwardRef } from 'react'
 
+import Search from '@/assets/icons/search'
 import { Typography } from '@/components/ui/typography'
 import clsx from 'clsx'
 
@@ -24,6 +25,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       onChange,
       placeholder,
       type,
+      value,
       ...restProps
     },
     ref
@@ -41,9 +43,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           </Typography>
         )}
         <div>
-          <input />
-          <button></button>
-          <button></button>
+          {type === 'search' && <Search />}
+          <input value={value} />
         </div>
       </div>
     )
