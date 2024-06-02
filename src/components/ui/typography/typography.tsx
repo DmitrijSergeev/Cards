@@ -18,6 +18,7 @@ export type TypographyProps<T extends ElementType = 'p'> = {
     | 'Subtitle2'
     | 'body1'
     | 'body2'
+    | 'error'
 } & ComponentPropsWithoutRef<T>
 
 export const Typography = <T extends ElementType = 'p'>(
