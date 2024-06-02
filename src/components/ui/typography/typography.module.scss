@@ -1,25 +1,25 @@
-@mixin typography($fontSize, $fontWeight, $lineHeight) {
+@mixin typography($fontSize, $lineHeight, $fontWeight) {
   margin: 0;
 
   font-size: $fontSize;
   font-weight: $fontWeight;
   line-height: $lineHeight;
-  color: var(--color-light-100);
+  color: var(--color-text-primary);
 }
 
-.h1 {
+.large {
   @include typography(var(--font-size-xxl), var(--line-height-l), var(--font-weight-bold));
 }
 
-.h2 {
+.h1 {
   @include typography(var(--font-size-xl), var(--line-height-l), var(--font-weight-bold));
 }
 
-.h3 {
+.h2 {
   @include typography(var(--font-size-l), var(--line-height-m), var(--font-weight-bold));
 }
 
-.h4 {
+.h3 {
   @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-bold));
 }
 
@@ -39,12 +39,12 @@
   @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-bold));
 }
 
-.caption {
-  @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
-}
-
 .overline {
   @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-bold));
+}
+
+.caption {
+  @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
 }
 
 .link1,
@@ -52,16 +52,16 @@
   @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
 
   cursor: pointer;
-  color: var(--color-info-500);
+  color: var(--color-text-link);
   text-decoration: underline;
 }
 
 .link2,
-.link1:visited {
+.link2:visited {
   @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
 
   cursor: pointer;
-  color: var(--color-info-500);
+  color: var(--color-text-link);
   text-decoration: underline;
 }
 
