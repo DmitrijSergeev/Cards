@@ -17,3 +17,10 @@ export const Default: Story = {
     placeholder: 'Placeholder',
   },
 }
+export const TypeSearch: Story = {
+  args: {
+    label: 'Search',
+    type: 'search',
+    value: 'Search',
+  },
+}

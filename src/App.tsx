@@ -19,7 +19,7 @@ export function App() {
           </Button>
         </div>
       </Typography>
-      <TextField label={'blabla'} />
+      <TextField label={'blabla'} type={'search'} />
     </div>
   )
 }
