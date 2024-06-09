@@ -1,15 +1,71 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
+import { Typography } from '@/components/ui/typography'
 import clsx from 'clsx'
 
 import s from './table.module.scss'
-export type TableProps = {
-  className?: string
-} & ComponentPropsWithoutRef<'table'>
-export const Table = forwardRef<ElementRef<'table'>, TableProps>(({ className, ...rest }, ref) => {
-  const classNames = {
-    root: clsx(s.table, className),
-  }
 
-  return <table className={classNames.root} ref={ref} {...rest} />
-})
+const Root = forwardRef<ElementRef<'table'>, ComponentPropsWithoutRef<'table'>>(
+  ({ children, className, ...restProps }, ref) => {
+    return (
+      <table className={clsx(s.root, className)} ref={ref} {...restProps}>
+        {children}
+      </table>
+    )
+  }
+)
+const Head = forwardRef<ElementRef<'thead'>, ComponentPropsWithoutRef<'thead'>>(
+  ({ children, className, ...restProps }, ref) => {
+    return (
+      <thead className={clsx(s.thead, className)} ref={ref} {...restProps}>
+        {children}
+      </thead>
+    )
+  }
+)
+
+const Body = forwardRef<ElementRef<'tbody'>, ComponentPropsWithoutRef<'tbody'>>(
+  ({ children, className, ...restProps }, ref) => {
+    return (
+      <tbody className={clsx(s.body, className)} ref={ref} {...restProps}>
+        {children}
+      </tbody>
+    )
+  }
+)
+
+const Row = forwardRef<ElementRef<'tr'>, ComponentPropsWithoutRef<'tr'>>(
+  ({ children, className, ...restProps }, ref) => {
+    return (
+      <tr className={clsx(s.row, className)} ref={ref} {...restProps}>
+        {children}
+      </tr>
+    )
+  }
+)
+
+const TitleCell = forwardRef<ElementRef<'th'>, ComponentPropsWithoutRef<'th'>>(
+  ({ children, className, ...restProps }, ref) => {
+    return (
+      <th className={clsx(s.title, className)} ref={ref} {...restProps}>
+        <Typography as={'span'} variant={'Subtitle2'}>
+          {children}
+        </Typography>
+      </th>
+    )
+  }
+)
+
+const Cell = forwardRef<ElementRef<'td'>, ComponentPropsWithoutRef<'td'>>(
+  ({ children, className, ...restProps }, ref) => {
+    return (
+      <td className={clsx(s.cell, className)} ref={ref} {...restProps}>
+        <Typography as={'span'} variant={'body2'}>
+          {children}
+        </Typography>
+      </td>
+    )
+  }
+)
+
+export const Table = { Body, Cell, Head, Root, Row, TitleCell }

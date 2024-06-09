@@ -10,15 +10,15 @@ export function App() {
   return (
     <Provider store={store}>
       <Router />
-      <Table>
-        <thead>
-          <tr>
+      <Table.Root>
+        <Table.Head>
+          <Table.Row>
             <th className={s.th}>Name</th>
             <th className={s.th}>Cards</th>
             <th className={s.th}>Last Updated</th>
             <th className={s.th}>Created By</th>
-          </tr>
-        </thead>
+          </Table.Row>
+        </Table.Head>
         <tbody>
           <tr>
             <td className={s.td}>Pack Name</td>
@@ -33,7 +33,7 @@ export function App() {
             <td className={s.td}>Ivan Ivanov</td>
           </tr>
         </tbody>
-      </Table>
+      </Table.Root>
     </Provider>
   )
 }

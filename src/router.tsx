@@ -23,27 +23,19 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const isAuthenticated = false
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
 
-function Layout() {
-  return null
-}
+const router = createBrowserRouter([
+  ...publicRoutes,
+  {
+    children: privateRoutes,
+    element: <PrivateRoutes />,
+  },
+])
+
 export function Router() {
   return <RouterProvider router={router} />
 }
-export const router = createBrowserRouter([
-  {
-    children: [
-      {
-        children: privateRoutes,
-        element: <PrivateRoutes />,
-      },
-      ...publicRoutes,
-    ],
-    element: <Layout />,
-    path: '/',
-  },
-])
