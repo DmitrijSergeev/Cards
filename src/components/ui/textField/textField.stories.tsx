@@ -13,14 +13,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    label: 'Label',
-    placeholder: 'Placeholder',
-  },
-}
-export const TypeSearch: Story = {
-  args: {
-    label: 'Search',
-    type: 'search',
-    value: 'Search',
+    children: 'Default Input',
+    disabled: false,
   },
 }
