@@ -21,7 +21,7 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
           </Typography>
         )}
         <div>
-          <input />
+          <input ref={ref} {...rest} />
           <button></button>
           <button></button>
         </div>
