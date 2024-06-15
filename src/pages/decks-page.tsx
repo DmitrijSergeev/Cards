@@ -1,9 +1,9 @@
-import { Table } from '@/components/ui/table'
+import { useGetDecksQuery } from '@/services/flashcards-api'
 
 export function DecksPage() {
-  return (
-    <div>
-      <Table.Root>Hello!</Table.Root>
-    </div>
-  )
+  const result = useGetDecksQuery()
+
+  console.log(result)
+
+  return <div>Decks page</div>
 }
