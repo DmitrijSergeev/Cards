@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
+import Search from '@/assets/icons/search'
 import { Typography } from '@/components/ui/typography'
 import clsx from 'clsx'
 
@@ -8,9 +9,12 @@ export type TextFieldProps = {
   label?: string
 } & ComponentPropsWithoutRef<'input'>
 export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
-  ({ className, label, ...rest }, ref) => {
+  ({ className, label, type, value, ...rest }, ref) => {
     const classNames = {
+      inputWrapper: clsx(s.inputWrapper),
       label: clsx(s.label),
+      leftIcon: s.left,
+      rightIcon: s.right,
     }
 
     return (
@@ -20,10 +24,11 @@ export const TextField = forwardRef<ElementRef<'input'>, TextFieldProps>(
             {label}
           </Typography>
         )}
-        <div>
-          <input ref={ref} {...rest} />
-          <button></button>
-          <button></button>
+        <div className={classNames.inputWrapper}>
+          {type === 'search' && <Search className={classNames.leftIcon} />}
+          <input ref={ref} {...rest} value={value} />
+          <button>x</button>
+          <button>+</button>
         </div>
       </div>
     )

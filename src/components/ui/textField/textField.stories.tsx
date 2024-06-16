@@ -13,7 +13,18 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    children: 'Default Input',
     disabled: false,
+  },
+}
+export const InputLabel: Story = {
+  args: {
+    disabled: false,
+    label: 'Input',
+  },
+}
+export const TypeSearch: Story = {
+  args: {
+    label: 'Search',
+    type: 'search',
   },
 }

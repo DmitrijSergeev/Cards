@@ -1,3 +1,4 @@
+import Search from '@/assets/icons/search'
 import { useGetDecksQuery } from '@/services/flashcards-api'
 
 export function DecksPage() {
@@ -5,5 +6,10 @@ export function DecksPage() {
 
   console.log(result)
 
-  return <div>Decks page</div>
+  return (
+    <div>
+      Decks page
+      <Search />
+    </div>
+  )
 }

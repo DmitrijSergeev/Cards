@@ -1,4 +1,30 @@
+@import '@/styles/mixins';
+
+.root {
+  width: 100%;
+  min-width: 200px;
+}
+
 .label {
   margin-bottom: 1px;
   color: var(--color-dark-100);
+}
+
+.inputWrapper {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+
+  .right {
+    @include input-icon(0, 0.75rem);
+  }
+
+  .left {
+    @include input-icon(0.15rem, 0);
+  }
+
+  &:focus-within .left,
+  &:focus-within .right {
+    color: var(--color-light-100);
+  }
 }
