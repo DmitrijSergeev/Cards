@@ -18,7 +18,7 @@ import s from './text-field.module.scss'
 
 import { Typography } from '../../ui/typography'
 
-type TextFieldProps = {
+export type TextFieldProps = {
   containerProps?: ComponentProps<'div'>
   errorMessage?: string
   label?: string

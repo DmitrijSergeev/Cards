@@ -18,7 +18,7 @@ type Props = {
 }
 type FormValues = z.infer<typeof loginSchema>
 
-export const LoginForm = ({ onSubmit }: Props) => {
+export const SignInForm = ({ onSubmit }: Props) => {
   const {
     control,
     formState: { errors },
